@@ -22,7 +22,7 @@
 <body class="bg-pp-bg">
     <div class="relative font-ar text-gray-900 antialiased">
         <div class="sm:hidden absolute bg-white z-20 h-2 w-full top-0"></div>
-        <img src="imgs/top.svg" class="absolute z-10 top-2 sm:top-0 w-full" alt="">
+        <img src="imgs/top.svg" class="absolute z-10 top-2 -mt-px sm:top-0 w-full" alt="">
         <img src="imgs/hero.png" class="absolute z-0 top-0 w-full" alt="">
 
         <div class="relative z-20 flex">
