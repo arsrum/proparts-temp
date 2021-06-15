@@ -1,19 +1,19 @@
 <x-theme-layout>
-    <div class="bg-gray-50 mb-32 max-w-7xl mx-auto mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
+    <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
         dir="rtl">
         <div class="mt-5">
             <ul class="flex text text-white font-bold">
                 <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center">1</li>
                 <li class="flex items-center justify-center">
-                    <div class="w-32 bg-pp-blue h-px"></div>
+                    <div class="w-16 sm:w-32 bg-pp-blue h-px"></div>
                 </li>
                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">2</li>
                 <li class="flex items-center justify-center">
-                    <div class="w-32 bg-pp-blue h-px"></div>
+                    <div class="w-16 sm:w-32 bg-pp-blue h-px"></div>
                 </li>
                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">3</li>
                 <li class="flex items-center justify-center">
-                    <div class="w-32 bg-pp-blue h-px"></div>
+                    <div class="w-16 sm:w-32 bg-pp-blue h-px"></div>
                 </li>
                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">4</li>
             </ul>
