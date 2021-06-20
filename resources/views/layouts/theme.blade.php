@@ -10,7 +10,8 @@
 
     <!-- Fonts -->
     {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700&display=swap"
+        rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
