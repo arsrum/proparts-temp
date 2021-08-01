@@ -23,19 +23,24 @@
 <body class="bg-pp-bg">
     <div class="relative font-ar text-gray-900 antialiased">
         <div class="sm:hidden absolute bg-white z-20 h-2 w-full top-0"></div>
-        <img src="imgs/top.svg" class="absolute z-10 top-2 -mt-px sm:top-0 w-full" alt="">
-        <img src="imgs/hero.png" class="absolute z-0 top-0 w-full" alt="">
+        <img src="../../../imgs/top.svg" class="absolute z-10 top-2 -mt-px sm:top-0 w-full" alt="">
+        <img src="../../../imgs/hero.png" class="absolute z-0 top-0 w-full" alt="">
 
         <div class="relative z-20 flex">
             <div class="w-1/4 sm:w-1/5 flex-shrink-0 pt-2 sm:pt-8 pl-1 sm:pl-6">
-                <img src="imgs/logo.png" class="ah-28" alt="">
+                <a href="{{ route('home') }}">
+                    <img src="../../../imgs/logo.png" class="ah-28" alt="">
+                </a>
             </div>
             <div class="w-3/4 sm:w-4/5 flex-shrink-0 flex justify-end p-5">
                 <div class="-mt-2 sm:mt-1 sm:mr-10 flex flex-col items-end w-full">
-                    <a href="#"
+                    {{-- <a href="{{ route('Cart-List') }}"
                         class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">الذهاب
                         لعربة
-                        التسوق</a>
+                        التسوق
+
+                        {{ Cart::content()->count() }}
+                    </a> --}}
                     <ul class="text-white text-xs sm:text-xl flex justify-between space-x-3 sm:space-x-8 space-x-reverse sm:space-x-reverse pt-4 sm:pt-14 pr-2 sm:pr-20 sm:w-9/12"
                         dir="rtl">
                         <li>نظرة عامة</li>
