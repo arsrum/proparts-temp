@@ -50,15 +50,15 @@ Route::get('/cart-list', 'FrontEnd\CartController@index')->name('Cart-List');
 // })->name('confirm-order');
 
  Route::get('/shipping-details', function () {
-   return view('frontend.shipping-details');
+   return view('Frontend.shipping-details');
  })->name('shipping-details');
 
 Route::get('/payment', function () {
-  return view('frontend.payment');
+  return view('Frontend.payment');
 })->name('payment');
 
 Route::get('/done', function () {
-  return view('frontend.done');
+  return view('Frontend.done');
 })->name('done');
 
 

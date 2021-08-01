@@ -42,7 +42,7 @@ class SearchController
       }
     }
     // return response()->json($data);
-        return view('frontend.index',compact('data'));
+        return view('Frontend.index',compact('data'));
       }
 
 
@@ -131,7 +131,7 @@ class SearchController
         }
       }
       
-      return view('frontend.main-parts',compact('parts','carId'));
+      return view('Frontend.main-parts',compact('parts','carId'));
 
       }
 
@@ -174,7 +174,7 @@ class SearchController
           
         }
       }
-      return view('frontend.main-parts',compact('parts'));
+      return view('Frontend.main-parts',compact('parts'));
 
       }
 
@@ -220,7 +220,7 @@ class SearchController
           
         }
           //return response()->json($data);
-        return view('frontend.sub-parts',compact('data','assemblyGroupNodeId','carId'));
+        return view('Frontend.sub-parts',compact('data','assemblyGroupNodeId','carId'));
 
       }
 
@@ -263,7 +263,7 @@ class SearchController
           $data[]=$value;
           
         }
-        return view('frontend.item-details',compact('data'));
+        return view('Frontend.item-details',compact('data'));
 
       }
 }

@@ -45,13 +45,13 @@ class CartController
     ));
     $cart = Cart::content();
 
-    return view('frontend.confirm-order', compact('cart'));
+    return view('Frontend.confirm-order', compact('cart'));
   }
   public function index()
   {
     $cart = Cart::content();
     //   return response()->json($cart, 200);
-    return view('frontend.confirm-order', compact('cart'));
+    return view('Frontend.confirm-order', compact('cart'));
   }
 
   public function cartDelete(){

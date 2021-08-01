@@ -36,46 +36,7 @@
                         </a>
                     </div>
                 @endforeach
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/breaks.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">نظام الفرامل</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/body.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">البودي</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/filters.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">الفلاتر</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/ac.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">نظام التبريد</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/engine.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">المحرك</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/elec.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">الأجزاء الكهربائية</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/gear.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">الجيربوكس</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/shas.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">الشاصية</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/acc.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">الإكسسوارات</h2>
-                </div>
-                <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                    <img src="imgs/tools.png" class="mb-5" alt="">
-                    <h2 class="text-lg sm:text-2xl text-center">أدوات ومعدات</h2>
-                </div>
+
             </div>
             <div class="mt-10 flex justify-end">
 
