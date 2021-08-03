@@ -34,7 +34,26 @@ class Order extends Model
         'updated_at',
         'deleted_at',
     ];
+    public static function boot()
+    {
 
+        parent::boot();
+
+
+                static::creating(function($model){
+                    $random_code = null;
+                    while($random_code === null){
+                        $tmp_random_code = rand(100000, 999999);
+                        if(!self::where('order_no', $tmp_random_code)->count()){
+                            $random_code = $tmp_random_code;
+                        }
+                    }
+                    $model->order_no = $random_code;
+                    $model->status_id = 1;
+
+                });
+    }
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

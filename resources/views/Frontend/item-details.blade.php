@@ -78,6 +78,11 @@
                                 @foreach ($item->images as $img)
                                     <img src="{{ $img->imageURL800 }}" alt="">
                                     <input type="hidden" name="img" value="{{ $img->imageURL800 }}">
+
+                                    <input type="hidden" name="node" value="{{ $assemblyGroupNodeId }}">
+                                    <input type="hidden" name="id" value="{{ $id }}">
+                                    <input type="hidden" name="carId" value="{{ $carId }}">
+
                                 @endforeach
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
@@ -99,8 +104,8 @@
 
 
                             <button type="submit">
-                                <div class="bg-ornage-start flex items-center justify-center text-white font-bold">
-
+                                <div class="bg-ornage-start flex items-center justify-center text-white font-bold">إضافة
+                                    للعربة
                                 </div>
                             </button>
 
@@ -109,16 +114,15 @@
                                 <div class="text-center">98.32 SR</div>
                             </div>
                         </div>
-                    </form>
+
                 @endforeach
             </div>
-            <form action="{{ route('done') }}" class="mt-20" method="get">
-                @csrf
-                <div class="mt-10 flex justify-end">
-                    <button type="submit"
-                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
-                        الشراء</button>
-                </div>
+
+            @csrf
+            <div class="mt-10 flex justify-end">
+                <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
+                    الشراء</button>
+            </div>
             </form>
         </div>
     </div>

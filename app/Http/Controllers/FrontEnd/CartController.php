@@ -24,7 +24,9 @@ class CartController
       )
 
     ));
-    return redirect()->back()->with('success', 'parts added successfully');
+    $cart = Cart::content();
+
+    return view('Frontend.confirm-order', compact('cart'));
   }
   public function buy(Request $request)
   {

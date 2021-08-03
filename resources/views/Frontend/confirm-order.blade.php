@@ -96,20 +96,36 @@
 
 
         </div>
-        <form action="{{ route('shipping-details') }}" class="mt-20">
+        @if (Cart::content()->count() === 0)
             <div class="mt-10 flex justify-end">
-                <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">تأكيد
-                    الطلب</button>
-            </div>
-        </form>
-        <form action="{{ route('Cart-Clear') }}" method="POST" class="mt-20">
-            @csrf
-            <div class="mt-10 flex justify-end">
-                <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Cart
-                    Clear
-                </button>
-            </div>
-        </form>
+                <a href="{{ route('home') }}">
+
+                    <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">لا
+                        يوجد لديك منتجات في سلة المنتجات العودة للرئيسية
+
+
+                    </button>
+                </a>
+        </div> @else
+
+            <form action="{{ route('shipping-details') }}" class="mt-20">
+                <div class="mt-10 flex justify-end">
+                    <button type="submit"
+                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">تأكيد
+                        الطلب</button>
+                </div>
+            </form>
+            <form action="{{ route('Cart-Clear') }}" method="POST" class="mt-20">
+                @csrf
+                <div class="mt-10 flex justify-end">
+                    <button type="submit"
+                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Cart
+                        Clear
+                    </button>
+                </div>
+            </form>
+        @endif
+
     </div>
     </div>
 </x-theme-layout>

@@ -130,7 +130,7 @@ class SearchController
           
         }
       }
-      
+      // return response()->json($parts);
       return view('Frontend.main-parts',compact('parts','carId'));
 
       }
@@ -263,7 +263,7 @@ class SearchController
           $data[]=$value;
           
         }
-        return view('Frontend.item-details',compact('data'));
+        return view('Frontend.item-details',compact('data','assemblyGroupNodeId','id','carId'));
 
       }
 }

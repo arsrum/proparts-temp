@@ -25,10 +25,20 @@
                 <p class="text-center text-3xl font-light">تم طلبك بنجاح .. نأمل لك تجربة مميزة مع بروبارتس</p>
 
             </div>
-                <div class="mt-10 flex justify-end">
-                    <a href="{{ route('home') }}" type="submit"
-                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">العودة للرئيسية</a>
-                </div>
+            <div class="mt-10 flex justify-end">
+
+                <form action="{{ route('Cart-Clear') }}" method="POST" class="mt-20">
+                    @csrf
+                    <div class="mt-10 flex justify-end">
+                        <button type="submit"
+                            class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
+                            العودة للرئيسية
+                        </button>
+                    </div>
+                </form>
+                {{-- <a href="{{ route('home') }}" type="submit"
+                    class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">العودة للرئيسية</a> --}}
+            </div>
         </div>
     </div>
 </x-theme-layout>

@@ -28,6 +28,15 @@ Route::post('/cart-clear', 'FrontEnd\CartController@cartDelete')->name('Cart-Cle
 Route::post('/cart-remove/{id}', 'FrontEnd\CartController@remove')->name('Cart-Remove');
 
 Route::get('/cart-list', 'FrontEnd\CartController@index')->name('Cart-List');
+Route::get('/profile', 'FrontEnd\UserFrontendController@index')->name('profile');
+Route::get('/orders', 'FrontEnd\UserFrontendController@orders')->name('orders');
+Route::get('/contact-us', 'FrontEnd\UserFrontendController@contactus')->name('contact-us');
+Route::post('/contact-us', 'FrontEnd\UserFrontendController@contactUsStore')->name('contact-us.store');
+
+// Route::get('/profile', function () {
+//   return view('Frontend.profile');
+// })->name('profile');
+
 
 //  Route::get('/home', function () {
 //    return view('frontend.index');

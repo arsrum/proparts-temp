@@ -34,20 +34,40 @@
             </div>
             <div class="w-3/4 sm:w-4/5 flex-shrink-0 flex justify-end p-5">
                 <div class="-mt-2 sm:mt-1 sm:mr-10 flex flex-col items-end w-full">
-                    {{-- <a href="{{ route('Cart-List') }}"
+                    <a href="{{ route('Cart-List') }}"
                         class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">الذهاب
                         لعربة
                         التسوق
 
                         {{ Cart::content()->count() }}
-                    </a> --}}
+                    </a>
                     <ul class="text-white text-xs sm:text-xl flex justify-between space-x-3 sm:space-x-8 space-x-reverse sm:space-x-reverse pt-4 sm:pt-14 pr-2 sm:pr-20 sm:w-9/12"
                         dir="rtl">
-                        <li>نظرة عامة</li>
-                        <li>تواصل معنا</li>
-                        <li>الملف الشخصي</li>
-                        <li>طلباتك</li>
-                        <li>WhatsApp</li>
+                        <a href="{{ route('home') }}">
+                            <li>الرئيسية</li>
+                        </a>
+
+                        @if (Auth::check())
+                            <a href="{{ route('profile') }}">
+                                <li>حسابي</li>
+                            </a>
+                            <a href="{{ route('orders') }}">
+                                <li>طلباتي</li>
+                            </a>
+
+                        @else
+                            <li>تسجيل
+                                \
+                                تسجيل دخول
+                            </li>
+
+                        @endif
+                        <li>
+                            <a href="{{ route('contact-us.store') }}">تواصل معنا</a>
+                        </li>
+                        <li>
+                            <a href="http://">WhatsApp</a>
+                        </li>
                     </ul>
                 </div>
             </div>
