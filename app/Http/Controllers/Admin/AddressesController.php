@@ -11,7 +11,7 @@ use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Auth;
 class AddressesController extends Controller
 {
     public function index()
@@ -34,11 +34,13 @@ class AddressesController extends Controller
         return view('admin.addresses.create', compact('users'));
     }
 
-    public function store(StoreAddressRequest $request)
-    {
-        $address = Address::create($request->all());
-
-        return redirect()->route('admin.addresses.index');
+    public function store(Request $request)
+    {   
+        $input=$request->all();
+        $input['user_id']=Auth::user()->id;
+        $address = Address::create($input);
+        // return response()->json($input);
+        return redirect()->back()->with('success','address saved successfuly');
     }
 
     public function edit(Address $address)

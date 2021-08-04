@@ -32,6 +32,14 @@ Route::get('/profile', 'FrontEnd\UserFrontendController@index')->name('profile')
 Route::get('/orders', 'FrontEnd\UserFrontendController@orders')->name('orders');
 Route::get('/contact-us', 'FrontEnd\UserFrontendController@contactus')->name('contact-us');
 Route::post('/contact-us', 'FrontEnd\UserFrontendController@contactUsStore')->name('contact-us.store');
+Route::post('/store-address', 'Admin\AddressesController@store')->name('shipping-store');
+Route::get('/shipping-details', 'FrontEnd\OrderManagerController@index')->name('shipping-details');
+Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('user-login.show');
+Route::get('/user-register', 'Auth\RegisterController@create')->name('user-register.show');
+Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('user-login.show');
+
+Route::post('/user-login', 'FrontEnd\UserFrontendController@loginPost')->name('user-login.post');
+Route::get('/logout', 'FrontEnd\UserFrontendController@logout')->name('logout');
 
 // Route::get('/profile', function () {
 //   return view('Frontend.profile');
@@ -58,9 +66,9 @@ Route::post('/contact-us', 'FrontEnd\UserFrontendController@contactUsStore')->na
 //   return view('frontend.confirm-order');
 // })->name('confirm-order');
 
- Route::get('/shipping-details', function () {
-   return view('Frontend.shipping-details');
- })->name('shipping-details');
+//  Route::get('/shipping-details', function () {
+//    return view('Frontend.shipping-details');
+//  })->name('shipping-details');
 
 Route::get('/payment', function () {
   return view('Frontend.payment');

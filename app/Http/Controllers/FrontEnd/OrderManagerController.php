@@ -16,15 +16,24 @@ use App\Models\User;
 use App\Models\ContactUs;
 use App\Models\Status;
 use Gate;
+use Auth;
 use Symfony\Component\HttpFoundation\Response;
-class UserFrontendController
+class OrderManagerController
 {
   public function index(Request $request)
   {
-    
-    $user = auth()->user();
+          
+    if (Auth::check()) {
+        $addresses = Address::get()->where('user_id',Auth::user()->id);
 
-    return view('Frontend.profile', compact('user'));
+
+        return view('Frontend.shipping-details',compact('addresses'));
+    } else {
+
+        return view('Frontend.shipping-details');  
+      }
+    
+    
   }
 
   public function orders()
@@ -47,18 +56,6 @@ class UserFrontendController
     
       return view('Frontend.contact-us');
   }
-  public function loginShow()
-  {
-
-    
-      return view('Frontend.login');
-  }
-  public function logout () {
-    //logout user
-    auth()->logout();
-    // redirect to homepage
-    return redirect('/');
-}
   public function contactUsStore(Request $request)
   {
     $contactUs = ContactUs::create($request->all());
