@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 //   return view('dashboard');
 // })->name('dashboard');
 Route::get('/home', 'FrontEnd\SearchController@Manufactures')->name('home');
-// Route::get('/main-parts', 'FrontEnd\SearchController@AssemblyGroups')->name('AssemblyGroups');
+Route::post('/main-partss', 'FrontEnd\SearchController@AssemblyGroups')->name('AssemblyGroups');
 Route::post('/main-parts', 'FrontEnd\SearchController@getVehicleByVin')->name('getVehicleByVin');
+Route::get('getState','FrontEnd\SearchController@model')->name('getState');
+Route::get('getType','FrontEnd\SearchController@type')->name('type');
 
 Route::get('/sub-parts/{assemblyGroupNodeId}/{carId}', 'FrontEnd\SearchController@Articles')->name('Articles');
 Route::get('/item-details/{node}/{id}/{car}', 'FrontEnd\SearchController@SingleArticles')->name('SingleArticles');
@@ -41,9 +43,9 @@ Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('us
 Route::post('/user-login', 'FrontEnd\UserFrontendController@loginPost')->name('user-login.post');
 Route::get('/logout', 'FrontEnd\UserFrontendController@logout')->name('logout');
 
-// Route::get('/profile', function () {
-//   return view('Frontend.profile');
-// })->name('profile');
+ Route::get('/inventory', function () {
+   return view('Frontend.inventory');
+ })->name('inventory');
 
 
 //  Route::get('/home', function () {
@@ -121,6 +123,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   // Contact Us
   Route::delete('contactuses/destroy', 'ContactUsController@massDestroy')->name('contactuses.massDestroy');
   Route::resource('contactuses', 'ContactUsController');
+  
+  // Products
+    Route::delete('products/destroy', 'ProductsController@massDestroy')->name('products.massDestroy');
+    Route::resource('products', 'ProductsController');
+    Route::get('products', 'ProductsController@index')->name('products.index');
+
+    Route::get('products/create', 'ProductsController@create')->name('products.create');
+    Route::post('products', 'ProductsController@store')->name('products.store');
+    Route::get('products/edit/{id}', 'ProductsController@edit')->name('products.edit');
+    Route::put('products/edit/{id}', 'ProductsController@update')->name('products.update');
+    Route::get('products/show/{id}', 'ProductsController@show')->name('products.show');
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
   // Change password

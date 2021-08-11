@@ -178,6 +178,22 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 42,
                 'title' => 'profile_password_edit',
             ],
+            [
+                'id'    => 43,
+                'title' => 'products_access',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'products_show',
+            ],
+            [
+                'id'    => 45,
+                'title' => 'products_edit',
+            ],
+            [
+                'id'    => 46,
+                'title' => 'products_delete',
+            ],
         ];
 
         Permission::insert($permissions);

@@ -81,12 +81,14 @@
 
                             <div class="text-center"></div>
                         </div>
+                        @if (Auth::check())
 
                         <div class="mt-10 flex justify-end">
                             <button type="submit"
                                 class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
                                 حفظ العنوان</button>
                         </div>
+                        @endif
             </form>
             <div class="bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
                 <div class="">الإجمالي <span class="text-xs">شامل الضريبة</span></div>

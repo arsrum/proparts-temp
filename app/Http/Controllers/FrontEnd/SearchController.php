@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Products;
 
 class SearchController 
 {
@@ -36,17 +37,97 @@ class SearchController
     foreach($object->data as $articleDetails){
     
       foreach ($articleDetails as $value) {
-      
         $data[]=$value;
-    
       }
     }
     // return response()->json($data);
-        return view('Frontend.index',compact('data'));
+    $Products=Products::all();
+        return view('Frontend.index',compact('data','Products'));
       }
 
+      public function model(Request $request)
+      {
+    
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "getModelSeries2": {
+          "country": "SA",
+          "lang": "en",
+          "linkingTargetType": "p",
+          "manuId": '.$request->manufactureId.',
+          "provider": 22735
+        }
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json'
+      ),
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $object = json_decode($response);
+    foreach($object->data as $articleDetails){
+      foreach ($articleDetails as $value) {
+        $models[]=$value;
+      }
+    }
+    
+        return response()->json($models);
+      }
+      
 
-      public function getVehicleByVin(Request $request){
+      public function type(Request $request)
+      {
+        $result_explode = explode('|', $request->manufactureId);
+
+        $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "getVehicleIdsByCriteria": {
+          "countriesCarSelection": "SA",
+          "lang": "EN",
+          "carType": "P",
+          "manuId": '.$result_explode[1].',
+          "modId": '.$result_explode[0].',
+          "provider": 22735
+        }
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json'
+      ),
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $object = json_decode($response);
+    foreach($object->data as $articleDetails){
+      foreach ($articleDetails as $value) {
+        $models[]=$value;
+      }
+    }
+    
+        return response()->json($models);
+      }
+      
+
+
+
+       public function getVehicleByVin(Request $request){
         $curl = curl_init();
         $vin = trim(json_encode($request->vin),"''");
 
@@ -135,8 +216,8 @@ class SearchController
 
       }
 
-      public function AssemblyGroups(){
-      
+      public function AssemblyGroups(Request $request){
+      // return response()->json($request);
         $curl = curl_init();
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
@@ -148,15 +229,17 @@ class SearchController
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS =>'{
+
           "getChildNodesAllLinkingTarget2": {
-            "articleCountry": "SA",
-            "childNodes": false,
-            "lang": "EN",
-            "linked": true,
+
+            "articleCountry": "ar",
+        
+            "lang": "en",
+        
             "linkingTargetType": "P",
-            "linkingTargetId": 55644,
+        
             "provider": 22735
-          }
+        
         }',
         CURLOPT_HTTPHEADER => array(
           'Content-Type: application/json'
@@ -174,7 +257,8 @@ class SearchController
           
         }
       }
-      return view('Frontend.main-parts',compact('parts'));
+      $carId=$request->typeId;
+      return view('Frontend.main-parts',compact('parts','carId'));
 
       }
 
@@ -219,7 +303,7 @@ class SearchController
           $data[]=$value;
           
         }
-          //return response()->json($data);
+          // return response()->json($data);
         return view('Frontend.sub-parts',compact('data','assemblyGroupNodeId','carId'));
 
       }

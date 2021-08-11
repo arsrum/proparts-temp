@@ -200,54 +200,41 @@ return view('admin.addresses.saad', compact('response'));
 
 
 
-public function get_model(  $id){
-  $curl = curl_init();
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS =>'{
-      "getModelSeries": {
-        "country": "SA",
-        "lang": "EN",
-        "linkingTargetType": "P",
-        "manuId": '.$id.',
-        "provider": 22735
-      }
-  }',
-    CURLOPT_HTTPHEADER => array(
-      'Content-Type: application/json'
-    ),
-  ));
+public function get_model( ){
   
-  $response = curl_exec($curl);
-  
-  curl_close($curl);
-  //echo $response;
-  $object = json_decode($response);
-
-  foreach($object->data as $articleDetails){
-  
-    foreach ($articleDetails as $value) {
-      $data[]=$value;
-
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'{
+    "getModelSeries2": {
+      "country": "SA",
+      "lang": "en",
+      "linkingTargetType": "p",
+      "manuId": 111,
+      "provider": 22735
     }
+}',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+$response = curl_exec($curl);
+curl_close($curl);
+$object = json_decode($response);
+foreach($object->data as $articleDetails){
+  foreach ($articleDetails as $value) {
+    $models[]=$value;
   }
-// foreach($response as $number => $number_array)
-// {
-// foreach($number_array as $data => $user_data)
-//     {
-//       return response()->json([$number, $data , $user_data]);
-//     }
-// }
+}
 
-
-//return view('admin.addresses.saad', compact('response'));
+		return response()->json($models);
   }
 
 

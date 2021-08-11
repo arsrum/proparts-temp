@@ -12,7 +12,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("admin.home") }}">
+                    <a class="nav-link" href="{{ route('admin.home') }}">
                         <i class="fas fa-fw fa-tachometer-alt nav-icon">
                         </i>
                         <p>
@@ -21,7 +21,8 @@
                     </a>
                 </li>
                 @can('user_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/permissions*") ? "menu-open" : "" }} {{ request()->is("admin/roles*") ? "menu-open" : "" }} {{ request()->is("admin/users*") ? "menu-open" : "" }}">
+                    <li
+                        class="nav-item has-treeview {{ request()->is('admin/permissions*') ? 'menu-open' : '' }} {{ request()->is('admin/roles*') ? 'menu-open' : '' }} {{ request()->is('admin/users*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-users">
 
@@ -34,7 +35,8 @@
                         <ul class="nav nav-treeview">
                             @can('permission_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is("admin/permissions") || request()->is("admin/permissions/*") ? "active" : "" }}">
+                                    <a href="{{ route('admin.permissions.index') }}"
+                                        class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                                         <i class="fa-fw nav-icon fas fa-unlock-alt">
 
                                         </i>
@@ -46,7 +48,8 @@
                             @endcan
                             @can('role_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is("admin/roles") || request()->is("admin/roles/*") ? "active" : "" }}">
+                                    <a href="{{ route('admin.roles.index') }}"
+                                        class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                                         <i class="fa-fw nav-icon fas fa-briefcase">
 
                                         </i>
@@ -58,7 +61,8 @@
                             @endcan
                             @can('user_access')
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is("admin/users") || request()->is("admin/users/*") ? "active" : "" }}">
+                                    <a href="{{ route('admin.users.index') }}"
+                                        class="nav-link {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
                                         <i class="fa-fw nav-icon fas fa-user">
 
                                         </i>
@@ -73,7 +77,8 @@
                 @endcan
                 @can('address_access')
                     <li class="nav-item">
-                        <a href="{{ route("admin.addresses.index") }}" class="nav-link {{ request()->is("admin/addresses") || request()->is("admin/addresses/*") ? "active" : "" }}">
+                        <a href="{{ route('admin.addresses.index') }}"
+                            class="nav-link {{ request()->is('admin/addresses') || request()->is('admin/addresses/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon fas fa-address-book">
 
                             </i>
@@ -85,7 +90,8 @@
                 @endcan
                 @can('car_access')
                     <li class="nav-item">
-                        <a href="{{ route("admin.cars.index") }}" class="nav-link {{ request()->is("admin/cars") || request()->is("admin/cars/*") ? "active" : "" }}">
+                        <a href="{{ route('admin.cars.index') }}"
+                            class="nav-link {{ request()->is('admin/cars') || request()->is('admin/cars/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon fas fa-car">
 
                             </i>
@@ -97,7 +103,8 @@
                 @endcan
                 @can('order_access')
                     <li class="nav-item">
-                        <a href="{{ route("admin.orders.index") }}" class="nav-link {{ request()->is("admin/orders") || request()->is("admin/orders/*") ? "active" : "" }}">
+                        <a href="{{ route('admin.orders.index') }}"
+                            class="nav-link {{ request()->is('admin/orders') || request()->is('admin/orders/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon fas fa-dolly-flatbed">
 
                             </i>
@@ -109,7 +116,8 @@
                 @endcan
                 @can('status_access')
                     <li class="nav-item">
-                        <a href="{{ route("admin.statuses.index") }}" class="nav-link {{ request()->is("admin/statuses") || request()->is("admin/statuses/*") ? "active" : "" }}">
+                        <a href="{{ route('admin.statuses.index') }}"
+                            class="nav-link {{ request()->is('admin/statuses') || request()->is('admin/statuses/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon far fa-list-alt">
 
                             </i>
@@ -121,7 +129,8 @@
                 @endcan
                 @can('contact_us_access')
                     <li class="nav-item">
-                        <a href="{{ route("admin.contactuses.index") }}" class="nav-link {{ request()->is("admin/contactuses") || request()->is("admin/contactuses/*") ? "active" : "" }}">
+                        <a href="{{ route('admin.contactuses.index') }}"
+                            class="nav-link {{ request()->is('admin/contactuses') || request()->is('admin/contactuses/*') ? 'active' : '' }}">
                             <i class="fa-fw nav-icon fas fa-cogs">
 
                             </i>
@@ -131,10 +140,24 @@
                         </a>
                     </li>
                 @endcan
-                @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
+                @can('products_access')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.products.index') }}"
+                            class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
+                            <i class="fa-fw nav-icon fas fa-dolly-flatbed">
+
+                            </i>
+                            <p>
+                                products
+                            </p>
+                        </a>
+                    </li>
+                @endcan
+                @if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}" href="{{ route('profile.password.edit') }}">
+                            <a class="nav-link {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}"
+                                href="{{ route('profile.password.edit') }}">
                                 <i class="fa-fw fas fa-key nav-icon">
                                 </i>
                                 <p>
@@ -145,7 +168,8 @@
                     @endcan
                 @endif
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                    <a href="#" class="nav-link"
+                        onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>
                             <i class="fas fa-fw fa-sign-out-alt nav-icon">
 
