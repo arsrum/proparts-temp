@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-    @can('contact_us_create')
+    @can('products_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.contactuses.create') }}">
+                <a class="btn btn-success" href="{{ route('admin.products.create') }}">
                     {{ trans('global.add') }} product
                 </a>
             </div>
@@ -29,12 +29,14 @@
                                 {{ trans('cruds.contactUs.fields.name') }}
                             </th>
                             <th>
-                                {{ trans('cruds.contactUs.fields.mobile') }}
+                                description
                             </th>
                             <th>
-                                {{ trans('cruds.contactUs.fields.title') }}
+                                price
                             </th>
-
+                            <th>
+                                image
+                            </th>
                             <th>
                                 &nbsp;
                             </th>
@@ -59,22 +61,25 @@
                                     {{ $product->price ?? '' }}
                                 </td>
                                 <td>
+                                    <img src="/image/{{ $product->image }}" width="50px">
+                                </td>
+                                <td>
                                     @can('products_show')
                                         <a class="btn btn-xs btn-primary"
-                                            href="{{ route('admin.contactuses.show', $product->id) }}">
+                                            href="{{ route('admin.products.show', $product->id) }}">
                                             {{ trans('global.view') }}
                                         </a>
                                     @endcan
 
                                     @can('products_edit')
                                         <a class="btn btn-xs btn-info"
-                                            href="{{ route('admin.contactuses.edit', $product->id) }}">
+                                            href="{{ route('admin.products.edit', $product->id) }}">
                                             {{ trans('global.edit') }}
                                         </a>
                                     @endcan
 
                                     @can('products_delete')
-                                        <form action="{{ route('admin.contactuses.destroy', $product->id) }}" method="POST"
+                                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">

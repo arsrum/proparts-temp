@@ -50,6 +50,36 @@ class OrderManagerController
 
       return view('Frontend.orders', compact('orders', 'users', 'addresses', 'statuses'));
   }
+  public function store(Request $request)
+  {
+    $input=$request->all();
+    $address = Address::create($input);
+
+// return response()->json($address);
+    $cart = Cart::content();
+    // 'user_id',
+    //     'address_id',
+    //     'status_id',
+    //     'quantity',
+    //     'price',
+    //     'generic_article',
+    //     'article_no',
+    //     'brand_no',
+
+    foreach ($cart as  $value) {
+        $input['quantity']=$value->qty;
+        $input['barnd_no']=$value->manufacturer;
+        $input['price']=$value->price;
+        $input['address_id']=$address->id;
+        $order = Order::create($input);
+
+    }
+
+    
+
+      return redirect()->route('admin.orders.index');
+  }
+
   public function contactUs()
   {
 

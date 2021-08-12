@@ -59,68 +59,57 @@
                     </div>
                 @endif
 
-                @foreach ($data as $item)
-                    <form action="{{ route('Cart-Add') }}" method="post">
-                        @csrf
-                        @foreach ($item->genericArticles as $name)
 
-                            <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
-                                {{ $name->genericArticleDescription }}
-                                <input type="hidden" name="name" value="{{ $name->genericArticleDescription }}">
+                <form action="{{ route('Cart-Add') }}" method="post">
+                    @csrf
 
-                            </div>
-                        @endforeach
+                    <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
+
+                        {{ $Products->name }}
+                    </div>
 
 
-                        <div class="mt-5 grid grid-cols-3 grid-rows-5 gap-5 w-full">
-                            <div class="row-span-4 bg-white">
+                    <div class="mt-5 grid grid-cols-3 grid-rows-5 gap-5 w-full">
+                        <div class="row-span-4 bg-white">
 
+                            {{-- {{ $Products }} --}}
 
-                                @foreach ($item->images as $img)
-                                    <img src="{{ $img->imageURL800 }}" alt="">
-                                    <input type="hidden" name="img" value="{{ $img->imageURL800 }}">
+                            <img src="/image/{{ $Products->image }}" alt="">
+                            <input type="hidden" name="img" value="/image/{{ $Products->image }}">
+                            <input type="hidden" name="name" value="{{ $Products->name }}">
+                            <input type="hidden" name="price" value="{{ $Products->price }}">
+                            <input type="hidden" name="dataSupplierId" value="ProParts">
+                            <input type="hidden" name="manufacturer" value="{{ $Products->user_id }}">
+                            <input type="hidden" name="articleNumber" value="{{ $Products->id }}">
+                        </div>
+                        <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <div class="">تفاصيل المنتج</div>
+                            <div class="text-center">{{ $Products->description }}</div>
+                        </div>
+                        <div class="col-start-2 col-span-2   grid grid-cols-2 py-2 px-4">
 
-                                    {{-- <input type="hidden" name="node" value="{{ $assemblyGroupNodeId }}">
-                                    <input type="hidden" name="id" value="{{ $id }}">
-                                    <input type="hidden" name="carId" value="{{ $carId }}"> --}}
-                                    <input type="hidden" name="dataSupplierId" value="{{ $item->dataSupplierId }}">
-                                    <input type="hidden" name="manufacturer" value="{{ $item->mfrId }}">
-                                    <input type="hidden" name="articleNumber" value="{{ $item->articleNumber }}">
-                                    <input type="hidden" name="price" value="{{ rand(99, 299) }}">
+                        </div>
+                        <div class="col-start-2 col-span-2   grid grid-cols-2 py-2 px-4">
 
-                                @endforeach
-                            </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">موديل السيارة</div>
-                                <div class="text-center">ES240, ES250, ES300H, ES350</div>
-                            </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">نوع السيارة</div>
-                                <div class="text-center">SEDAN</div>
-                            </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">نوع القطعة</div>
-                                <div class="text-center">أصلي</div>
-                            </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">المحرك</div>
-                                <div class="text-center">2.5L</div>
-                            </div>
+                        </div>
+                        <div class="col-start-2 col-span-2   grid grid-cols-2 py-2 px-4">
 
-
-                            <button type="submit">
-                                <div class="bg-ornage-start flex items-center justify-center text-white font-bold">إضافة
-                                    للعربة
-                                </div>
-                            </button>
-
-                            <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                                <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
-                                <div class="text-center">98.32 SR</div>
-                            </div>
                         </div>
 
-                @endforeach
+
+                        <button type="submit">
+                            <div class="bg-ornage-start flex items-center justify-center text-white font-bold">إضافة
+                                للعربة
+                            </div>
+                        </button>
+
+                        <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
+                            <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
+                            <div class="text-center">{{ $Products->price }} SR</div>
+                        </div>
+                    </div>
+
+
             </div>
 
             @csrf

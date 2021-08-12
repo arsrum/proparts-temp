@@ -9,17 +9,19 @@ class CartController
 {
   public function add(Request $request)
   {
+    // return response()->json($request);
+
     Cart::add(array(
       array(
         'id' => rand(1, 100),
-        'name' => "Cam Sensor",
-        'price' => "135",
+        'name' => $request->name,
+        'price' => (float)$request->price,
         'qty' => rand(1, 5),
         'options' => array(
           'img' => $request->img,
           'supplier' => $request->dataSupplierId,
-          'manufacturer' => "797",
-          'articleNumber' => "106819",
+          'manufacturer' => $request->manufacturer,
+          'articleNumber' =>  $request->articleNumber ,
         )
       )
 

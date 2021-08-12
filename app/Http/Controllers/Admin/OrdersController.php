@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Status;
 use App\Models\User;
 use Gate;
+use Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -31,6 +32,21 @@ class OrdersController extends Controller
 
         return view('admin.orders.index', compact('orders', 'users', 'addresses', 'statuses'));
     }
+    public function seller()
+    {
+        abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $orders = Order::with(['user', 'address', 'status'])->where('brand_no',Auth::user()->id)->get();
+
+        $users = User::get();
+
+        $addresses = Address::get();
+
+        $statuses = Status::get();
+
+
+        return view('admin.orders.seller', compact('orders', 'users', 'addresses', 'statuses'));
+    }
 
     public function create()
     {
@@ -45,7 +61,7 @@ class OrdersController extends Controller
         return view('admin.orders.create', compact('users', 'addresses', 'statuses'));
     }
 
-    public function store(StoreOrderRequest $request)
+    public function store(Request $request)
     {
         $order = Order::create($request->all());
 

@@ -26,13 +26,30 @@ class ProductsController extends Controller
 
         return view('admin.products.create');
     }
-
     public function store(Request $request)
     {
-        $Products = Products::create($request->all());
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        $input = $request->all();
+  
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+    
+        Products::create($input);
         $products = Products::all();
+
         return view('admin.products.index',compact('products'));
+
     }
+
+   
 
     public function edit($id)
     {
@@ -56,22 +73,17 @@ class ProductsController extends Controller
         // abort_if(Gate::denies('contact_us_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $Products = Products::findOrFail($id);
 
-        return view('admin.products.show', compact('Products'));
+        return view('FrontEnd.product-details', compact('Products'));
     }
 
-    public function destroy(ContactUs $contactUs)
+    public function destroy($id)
     {
-        abort_if(Gate::denies('contact_us_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('products_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $Products = Products::findOrFail($id);
 
-        $contactUs->delete();
+        $Products->delete();
 
         return back();
     }
 
-    public function massDestroy(MassDestroyContactUsRequest $request)
-    {
-        ContactUs::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
 }

@@ -20,11 +20,11 @@
         </div>
 
         <div class="w-full">
+            <form action="{{ route('payment') }}" method="POST" class="mt-20">
 
 
 
-            <form action="{{ route('shipping-store') }}" method="post">
-                @csrf
+
                 <div class="max-w-3xl mx-auto my-16">
                     @if (Auth::check())
                         @if ($addresses->count() > 0)
@@ -34,7 +34,8 @@
                                     <option disabled="disabled" value="">Select <Address></Address>
                                     </option>
                                     @foreach ($addresses as $address)
-                                        <option value="{{ $address->id }}">{{ $address->city }}</option>
+                                        <option value="{{ $address->id }}">
+                                            {{ $address->city }}</option>
 
                                     @endforeach
 
@@ -42,67 +43,67 @@
                                 <div class="text-center"></div>
                             </div>
                         @endif
-                        <div class="bg-white grid grid-cols-2 py-2 px-4">
-
-                            <div class="text-center">أو سجل عنوان جديد</div>
+                        <div class=" pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
+                            أو سجل عنوان جديد
                         </div>
                     @endif
 
+                    <form action="{{ route('shipping-store') }}" method="post">
+                        @csrf
+                        <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">الدولة</div>
+                                <input type="text" value="" name="country" id="country" class="text-grey-darkest">
+                                <div class="text-center"></div>
+                            </div>
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">المنطقة</div>
+                                <select name="state" id="state">
+                                    <option disabled="disabled" value="">Select state</option>
+                                    <option value="aseer">Aseer</option>
 
-                    <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
-                        <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">الدولة</div>
-                            <input type="text" name="country" id="country" class="text-grey-darkest">
-                            <div class="text-center"></div>
-                        </div>
-                        <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">المنطقة</div>
-                            <select name="state" id="state">
-                                <option disabled="disabled" value="">Select state</option>
-                                <option value="">Aseer</option>
-                            </select>
-                            <div class="text-center"></div>
-                        </div>
-                        <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">المدينة</div>
-                            <select name="city" id="city">
-                                <option disabled="disabled" value="">Select city</option>
-                                <option value="">Abha</option>
-                                <option value="">Khamis Mushait</option>
-                                <option value="">Rijal Almaa</option>
-                                <option value="">Ahad Rfida</option>
+                                </select>
+                                <div class="text-center"></div>
+                            </div>
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">المدينة</div>
+                                <select name="city" id="city">
+                                    <option disabled="disabled" value="">Select city</option>
+                                    <option value="Abha">Abha</option>
+                                    <option value="Khamis">Khamis Mushait</option>
+                                    <option value="Rijal">Rijal Almaa</option>
+                                    <option value="Ahad">Ahad Rfida</option>
 
-                            </select>
-                            <div class="text-center"></div>
-                        </div>
-                        <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">عنوان الشارع</div>
-                            <input type="text" name="street_address" id="street_address" class="text-grey-darkest">
+                                </select>
+                                <div class="text-center"></div>
+                            </div>
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">عنوان الشارع</div>
+                                <input type="text" name="street_address" id="street_address" class="text-grey-darkest">
 
-                            <div class="text-center"></div>
-                        </div>
-                        @if (Auth::check())
+                                <div class="text-center"></div>
+                            </div>
+                            @if (Auth::check())
 
-                        <div class="mt-10 flex justify-end">
-                            <button type="submit"
-                                class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                                حفظ العنوان</button>
+                                <div class="mt-10 flex justify-end">
+                                    <button type="submit"
+                                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
+                                        حفظ العنوان</button>
+                                </div>
+                            @endif
+                            <div class="bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
+                                <div class="">الإجمالي <span class="text-xs">شامل الضريبة</span></div>
+                                <div class="text-center">98.32 SR</div>
+                            </div>
                         </div>
-                        @endif
+                </div>
+                <div class="mt-10 flex justify-end">
+                    <button type="submit"
+                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
+                        الشراء</button>
+                </div>
             </form>
-            <div class="bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                <div class="">الإجمالي <span class="text-xs">شامل الضريبة</span></div>
-                <div class="text-center">98.32 SR</div>
-            </div>
         </div>
-    </div>
-    <form action="{{ route('payment') }}" class="mt-20">
-        <div class="mt-10 flex justify-end">
-            <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
-                الشراء</button>
-        </div>
-    </form>
-    </div>
     </div>
 
 </x-theme-layout>

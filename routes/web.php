@@ -72,9 +72,11 @@ Route::get('/logout', 'FrontEnd\UserFrontendController@logout')->name('logout');
 //    return view('Frontend.shipping-details');
 //  })->name('shipping-details');
 
-Route::get('/payment', function () {
-  return view('Frontend.payment');
-})->name('payment');
+Route::post('/payment', 'FrontEnd\OrderManagerController@store')->name('payment');
+
+// Route::get('/payment', function () {
+//   return view('Frontend.payment');
+// })->name('payment');
 
 Route::get('/done', function () {
   return view('Frontend.done');
@@ -115,6 +117,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   // Orders
   Route::delete('orders/destroy', 'OrdersController@massDestroy')->name('orders.massDestroy');
   Route::resource('orders', 'OrdersController');
+  Route::get('seller_orders', 'OrdersController@seller')->name('orders.seller');
 
   // Statuses
   Route::delete('statuses/destroy', 'StatusesController@massDestroy')->name('statuses.massDestroy');

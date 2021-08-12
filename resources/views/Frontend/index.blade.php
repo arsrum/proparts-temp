@@ -97,13 +97,11 @@
              @foreach ($Products as $product)
                  <a href="{{ route('admin.products.show', $product->id) }}">
                      <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
-                         <img src="imgs/default.png" class="mb-5" alt="">
-                         <h2 class="text-lg sm:text-2xl text-center">نظام الفرامل</h2>
+                         <img src="/image/{{ $product->image }}" class="mb-5" alt="">
+                         <h2 class="text-lg sm:text-2xl text-center">{{ $product->name }}</h2>
                      </div>
                  </a>
              @endforeach
-
-
          </div>
 
      </form>

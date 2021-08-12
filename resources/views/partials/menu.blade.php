@@ -114,6 +114,18 @@
                         </a>
                     </li>
                 @endcan
+                @can('seller_orders')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.orders.seller') }}"
+                            class="nav-link {{ request()->is('admin/orders_seller') || request()->is('admin/orders_seller/*') ? 'active' : '' }}">
+                            <i class="fa-fw nav-icon fas fa-dolly-flatbed">
+                            </i>
+                            <p>
+                                {{ trans('cruds.order.title') }}
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 @can('status_access')
                     <li class="nav-item">
                         <a href="{{ route('admin.statuses.index') }}"
