@@ -40,9 +40,10 @@ class SearchController
         $data[]=$value;
       }
     }
-    // return response()->json($data);
     $Products=Products::all();
-        return view('Frontend.index',compact('data','Products'));
+    // return response()->json($Products);
+
+    return view('Frontend.index',compact('data','Products'));
       }
 
       public function model(Request $request)
@@ -128,6 +129,52 @@ class SearchController
 
 
        public function getVehicleByVin(Request $request){
+         if($request->vin===null){
+          $curl = curl_init();
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+    
+           "getChildNodesAllLinkingTarget2": {
+                "articleCountry": "SA",
+                "childNodes": false,
+                "lang": "EN",
+                "linked": true,
+                "linkingTargetType": "P",
+                "linkingTargetId": '.$request->typeId.',
+                "provider": 22735
+              }
+            
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Content-Type: application/json'
+            ),
+          ));
+          $articles = curl_exec($curl);
+          
+          $nodes = json_decode($articles);
+          
+          curl_close($curl);
+          
+          foreach($nodes->data as $value){
+            foreach ($value as $data) {
+                $parts[]=$data;
+              
+            }
+          }
+          $carId=$request->typeId;
+          return view('Frontend.main-parts',compact('parts','carId'));
+    
+         }
+         else
+
         $curl = curl_init();
         $vin = trim(json_encode($request->vin),"''");
 
@@ -217,7 +264,6 @@ class SearchController
       }
 
       public function AssemblyGroups(Request $request){
-      // return response()->json($request);
         $curl = curl_init();
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
@@ -230,11 +276,15 @@ class SearchController
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS =>'{
 
-          "getChildNodesAllLinkingTarget2": 
-            "articleCountry": "ar",
-            "lang": "en",
+       "getChildNodesAllLinkingTarget2": {
+            "articleCountry": "SA",
+            "childNodes": false,
+            "lang": "EN",
+            "linked": true,
             "linkingTargetType": "P",
+            "linkingTargetId": '.$request->typeId.',
             "provider": 22735
+          }
         
         }',
         CURLOPT_HTTPHEADER => array(

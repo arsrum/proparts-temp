@@ -83,11 +83,11 @@
                                     name="street_address" :value="old('qty')"  />
                                     <div class="text-center"></div>
                                 </div>
-                            
+{{--                             
                                 <div class="bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
                                     <div class="">الإجمالي <span class="text-xs">شامل الضريبة</span></div>
                                     <div class="text-center">98.32 SR</div>
-                                </div>
+                                </div> --}}
                             </div>
                 </div>
                 <div class="mt-10 flex justify-end">

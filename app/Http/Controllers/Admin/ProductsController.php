@@ -8,14 +8,14 @@ use App\Models\Products;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Auth;
 class ProductsController extends Controller
 {
     public function index()
     {
         abort_if(Gate::denies('products_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-         $products = Products::all();
+         $products = Products::all()->where('user_id',Auth::user()->id);
 
         return view('admin.products.index',compact('products'));
     }

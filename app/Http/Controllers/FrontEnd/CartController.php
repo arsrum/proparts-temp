@@ -34,14 +34,15 @@ class CartController
   }
   public function buy(Request $request)
   {
+    // return response()->json($request);
      Cart::add(array(
        array(
          'id' => rand(1, 100),
-         'name' => "Cam Sensor",
+         'name' => $request->name ,
          'price' => "135",
          'qty' => rand(1, 5),
          'options' => array(
-           'img' => $request->img,
+          'img' => $request->img,
            'supplier' => $request->dataSupplierId,
            'manufacturer' => $request->manufacturer,
            'carId'=>$request->carId,
@@ -50,6 +51,7 @@ class CartController
        )
 
      ));
+     
     $cart = Cart::content();
 
     return view('Frontend.confirm-order', compact('cart'));

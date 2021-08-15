@@ -93,10 +93,7 @@ class OrderManagerController
           $input['order_id']=$saad;
   
           $order_products = order_products::create($input);
-  
       }
-      
-  
         return redirect()->route('done');
     }
     $cart = Cart::content();

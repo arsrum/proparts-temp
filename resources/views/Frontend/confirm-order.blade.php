@@ -59,33 +59,37 @@
                             </div>
 
 
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">موديل السيارة</div>
-                                <div class="text-center">ES240, ES250, ES300H, ES350</div>
+                            {{-- <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">
+
+                                </div>
+                                <div class="text-center"></div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">نوع السيارة</div>
-                                <div class="text-center">SEDAN</div>
+                                <div class=""> </div>
+                                <div class="text-center"></div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">نوع القطعة</div>
-                                <div class="text-center">أصلي</div>
+                                <div class=""> </div>
+                                <div class="text-center"></div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">المحرك</div>
-                                <div class="text-center">2.5L</div>
-                            </div>
+                                <div class=""></div>
+                                <div class="text-center"></div>
+                            </div> --}}
 
                             <button type="submit">
 
-                                <div class="bg-red-800 flex items-center justify-center text-white font-bold">حذف من
+                                {{-- <div class="bg-red-800 flex items-center justify-center text-white font-bold">حذف من
                                     العربة
-                                </div>
+                                </div> --}}
                             </button>
 
                             <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
                                 <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
-                                <div class="text-center">ستصلك رسالة بتسعيرة القطعة
+                                <div class="text-center">
+
+                                    ستصلك رسالة بتسعيرة القطعة
                                 </div>
                             </div>
                         </div>

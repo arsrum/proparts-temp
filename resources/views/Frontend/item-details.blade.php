@@ -144,6 +144,7 @@
         @endforeach
         @foreach ($item->genericArticles as $img)
             <input type="hidden" name="genericArticleId" value={{ $img->genericArticleId }}>
+            <input type="hidden" name="name" value={{ $img->genericArticleDescription }}>
             <input type="hidden" name="price" value={{ $carDetails->carId }}>
 
         @endforeach

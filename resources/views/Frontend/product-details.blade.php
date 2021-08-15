@@ -129,8 +129,6 @@
                     <input type="hidden" name="genericArticleId" value={{ $Products->id }}>
                     <input type="hidden" name="price" value={{ $Products->price}}>
                     <input type="hidden" name="name" value={{ $Products->name }}>
-
-
                 @csrf
                 <div class="mt-10 flex justify-end">
                     <button type="submit"
