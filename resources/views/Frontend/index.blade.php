@@ -1,6 +1,42 @@
  <x-theme-layout>
      <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
          dir="rtl">
+         <div class="carousel">
+             <div class="carousel-inner">
+                 <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
+                     checked="checked">
+                 <div class="carousel-item">
+                     <img src="https://car-images.bauersecure.com/pagefiles/13007/toyotagt86aero1.jpg">
+                 </div>
+                 <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+                 <div class="carousel-item">
+                     <img
+                         src="https://www.bmw-me.com/content/dam/bmw/common/all-models/m-series/m8-coupe/2019/inspire/bmw-m8competition-coupe-inspire-mg-design-desktop-04.jpg">
+                 </div>
+                 <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+                 <div class="carousel-item">
+                     <img
+                         src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/high-porsche-935-2018-porsche-ag-1538080321.jpg">
+                 </div>
+                 <label for="carousel-3" class="carousel-control prev control-1">‹</label>
+                 <label for="carousel-2" class="carousel-control next control-1">›</label>
+                 <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+                 <label for="carousel-3" class="carousel-control next control-2">›</label>
+                 <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+                 <label for="carousel-1" class="carousel-control next control-3">›</label>
+                 <ol class="carousel-indicators">
+                     <li>
+                         <label for="carousel-1" class="carousel-bullet">•</label>
+                     </li>
+                     <li>
+                         <label for="carousel-2" class="carousel-bullet">•</label>
+                     </li>
+                     <li>
+                         <label for="carousel-3" class="carousel-bullet">•</label>
+                     </li>
+                 </ol>
+             </div>
+         </div>
          <div class="mt-5">
              <ul class="flex text text-white font-bold">
                  <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center">1</li>
@@ -95,7 +131,7 @@
      <form action="" class="mt-20">
          <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
              @foreach ($Products as $product)
-                 <a href="{{ route('admin.products.show', $product->id) }}">
+                 <a href="{{ route('products.show', $product->id) }}">
                      <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
                          <img src="/image/{{ $product->image }}" class="mb-5" alt="">
                          <h2 class="text-lg sm:text-2xl text-center">{{ $product->name }}</h2>

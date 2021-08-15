@@ -21,32 +21,35 @@ class CartController
           'img' => $request->img,
           'supplier' => $request->dataSupplierId,
           'manufacturer' => $request->manufacturer,
+          'carId'=>$request->carId,
           'articleNumber' =>  $request->articleNumber ,
         )
       )
 
     ));
     $cart = Cart::content();
+    return back()->with('success','message here');
+    return response()->json($request);
 
-    return view('Frontend.confirm-order', compact('cart'));
   }
   public function buy(Request $request)
   {
-    Cart::add(array(
-      array(
-        'id' => rand(1, 100),
-        'name' => "Cam Sensor",
-        'price' => "135",
-        'qty' => rand(1, 5),
-        'options' => array(
-          'img' => $request->img,
-          'supplier' => $request->dataSupplierId,
-          'manufacturer' => "797",
-          'articleNumber' => "106819",
-        )
-      )
+     Cart::add(array(
+       array(
+         'id' => rand(1, 100),
+         'name' => "Cam Sensor",
+         'price' => "135",
+         'qty' => rand(1, 5),
+         'options' => array(
+           'img' => $request->img,
+           'supplier' => $request->dataSupplierId,
+           'manufacturer' => $request->manufacturer,
+           'carId'=>$request->carId,
+           'articleNumber' =>  $request->articleNumber ,
+           )
+       )
 
-    ));
+     ));
     $cart = Cart::content();
 
     return view('Frontend.confirm-order', compact('cart'));
@@ -73,6 +76,6 @@ class CartController
   {
     $cart = Cart::remove($id);
    // return response()->json($cart, 200);
-   return redirect()->back()->with('success', 'parts added successfully');
+   return redirect()->back()->with('success', 'parts removed successfully');
   }
 }

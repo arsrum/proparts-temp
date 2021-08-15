@@ -42,6 +42,7 @@ Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('us
 
 Route::post('/user-login', 'FrontEnd\UserFrontendController@loginPost')->name('user-login.post');
 Route::get('/logout', 'FrontEnd\UserFrontendController@logout')->name('logout');
+Route::get('/products/show/{id}', 'Admin\ProductsController@show')->name('products.show');
 
  Route::get('/inventory', function () {
    return view('Frontend.inventory');
@@ -136,7 +137,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('products', 'ProductsController@store')->name('products.store');
     Route::get('products/edit/{id}', 'ProductsController@edit')->name('products.edit');
     Route::put('products/edit/{id}', 'ProductsController@update')->name('products.update');
-    Route::get('products/show/{id}', 'ProductsController@show')->name('products.show');
 
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

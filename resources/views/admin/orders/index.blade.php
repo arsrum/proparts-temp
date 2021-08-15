@@ -37,7 +37,7 @@
                             <th>
                                 {{ trans('cruds.order.fields.status') }}
                             </th>
-                            <th>
+                            {{-- <th>
                                 {{ trans('cruds.order.fields.quantity') }}
                             </th>
                             <th>
@@ -51,62 +51,12 @@
                             </th>
                             <th>
                                 {{ trans('cruds.order.fields.brand_no') }}
-                            </th>
+                            </th> --}}
                             <th>
                                 &nbsp;
                             </th>
                         </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                                <select class="search">
-                                    <option value>{{ trans('global.all') }}</option>
-                                    @foreach ($users as $key => $item)
-                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="search">
-                                    <option value>{{ trans('global.all') }}</option>
-                                    @foreach ($addresses as $key => $item)
-                                        <option value="{{ $item->country }}">{{ $item->country }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <select class="search">
-                                    <option value>{{ trans('global.all') }}</option>
-                                    @foreach ($statuses as $key => $item)
-                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                                <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
+
                     </thead>
                     <tbody>
                         @foreach ($orders as $key => $order)
@@ -129,7 +79,7 @@
                                 <td>
                                     {{ $order->status->name ?? '' }}
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ $order->quantity ?? '' }}
                                 </td>
                                 <td>
@@ -143,7 +93,7 @@
                                 </td>
                                 <td>
                                     {{ $order->brand_no ?? '' }}
-                                </td>
+                                </td> --}}
                                 <td>
                                     @can('order_show')
                                         <a class="btn btn-xs btn-primary"

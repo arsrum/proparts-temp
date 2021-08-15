@@ -72,7 +72,7 @@ class ProductsController extends Controller
     {
         // abort_if(Gate::denies('contact_us_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $Products = Products::findOrFail($id);
-
+        // return response()->json($Products);
         return view('FrontEnd.product-details', compact('Products'));
     }
 

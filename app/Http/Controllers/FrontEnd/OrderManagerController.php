@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use Illuminate\Http\Request;
 use Cart;
 use Orders;
+use App\Models\order_products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyOrderRequest;
@@ -53,10 +54,53 @@ class OrderManagerController
   public function store(Request $request)
   {
     $input=$request->all();
-    $address = Address::create($input);
 
-// return response()->json($address);
+    if(!isset($input['address']))
+    {
+      $address = Address::create($input);
+
+      $cart = Cart::content();
+
+    $input['user_id']=Auth::user()->id;
+    $order = Order::create($input);
+    $saad=$order->id;
+    foreach ($cart as  $value) {
+        $input['brand_no']=rand(1312,99999);
+        $input['generic_article']=rand(1312,99999);
+        $input['article_no']=rand(1312,99999);
+        $input['address_id']=$address->id;
+        $input['order_id']=$saad;
+
+        $order_products = order_products::create($input);
+
+    }
+    return redirect()->route('done');
+
+    }
+    else
+    {
+      $cart = Cart::content();
+      $address = Address::findOrFail($request->address);
+
+      $input['user_id']=Auth::user()->id;
+      $order = Order::create($input);
+      $saad=$order->id;
+      foreach ($cart as  $value) {
+          $input['brand_no']=rand(1312,99999);
+          $input['generic_article']=rand(1312,99999);
+          $input['article_no']=rand(1312,99999);
+          $input['address_id']=$address->id;
+          $input['order_id']=$saad;
+  
+          $order_products = order_products::create($input);
+  
+      }
+      
+  
+        return redirect()->route('done');
+    }
     $cart = Cart::content();
+
     // 'user_id',
     //     'address_id',
     //     'status_id',
@@ -65,19 +109,30 @@ class OrderManagerController
     //     'generic_article',
     //     'article_no',
     //     'brand_no',
-
-    foreach ($cart as  $value) {
-        $input['quantity']=$value->qty;
-        $input['barnd_no']=$value->manufacturer;
-        $input['price']=$value->price;
-        $input['address_id']=$address->id;
-        $order = Order::create($input);
-
+    if(!isset($input['address']))
+    {
+      $input['address_id']=$address->id;
+    }else
+    {
+      $input['address_id']=$request->address;
     }
 
+    $input['user_id']=Auth::user()->id;
+    $order = Order::create($input);
+    $saad=$order->id;
+    foreach ($cart as  $value) {
+        $input['brand_no']=rand(1312,99999);
+        $input['generic_article']=rand(1312,99999);
+        $input['article_no']=rand(1312,99999);
+        $input['address_id']=$address->id;
+        $input['order_id']=$saad;
+
+        $order_products = order_products::create($input);
+
+    }
     
 
-      return redirect()->route('admin.orders.index');
+      return redirect()->route('done');
   }
 
   public function contactUs()

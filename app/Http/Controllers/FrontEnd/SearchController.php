@@ -212,7 +212,7 @@ class SearchController
         }
       }
       // return response()->json($parts);
-      return view('Frontend.main-parts',compact('parts','carId'));
+      return view('Frontend.main-parts',compact('parts','carId','word'));
 
       }
 
@@ -230,14 +230,10 @@ class SearchController
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS =>'{
 
-          "getChildNodesAllLinkingTarget2": {
-
+          "getChildNodesAllLinkingTarget2": 
             "articleCountry": "ar",
-        
             "lang": "en",
-        
             "linkingTargetType": "P",
-        
             "provider": 22735
         
         }',
@@ -341,13 +337,54 @@ class SearchController
           ),
         ));
         $response = curl_exec($curl);
+
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "getVehicleByIds3": {
+              "articleCountry": "SA",
+              "carIds": {
+                "array": [
+                  '.$carId.'
+                ]
+              },
+              "countriesCarSelection": "SA",
+              "country": "SA",
+              "lang": "EN"
+            }
+          }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+        $carInfo = curl_exec($curl);
+
+
         curl_close($curl);
         $object = json_decode($response);
+        $objectCar = json_decode($carInfo);
+        foreach ($objectCar->data->array as $key => $value) {
+          $dataCar[]=$value;
+          foreach ($dataCar as $key => $car) {
+            $cardata[]=$car;
+
+          }
+        }
+        $carDetails=$cardata[0]->vehicleDetails;
         foreach ($object->articles as $key => $value) {
           $data[]=$value;
           
         }
-        return view('Frontend.item-details',compact('data','assemblyGroupNodeId','id','carId'));
+        //  return response()->json($carDetails, 200);
+        return view('Frontend.item-details',compact('data','assemblyGroupNodeId','id','carId','carDetails'));
 
       }
 }

@@ -18,16 +18,15 @@
                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">4</li>
             </ul>
         </div>
+        @foreach ($data as $item)
+            <div class="w-full">
+                <div class="max-w-4xl mx-auto my-16">
 
-        <div class="w-full">
-            <div class="max-w-4xl mx-auto my-16">
+                    @if (Session::has('success'))
 
-                @if (Session::has('success'))
+                        <div class="bg-orange-500 lg:rounded-full  text-center py-4 lg:px-4">
 
-                    <div class="bg-indigo-900 text-center py-4 lg:px-4">
-                        <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
-                            role="alert">
-                            <span
+                            {{-- <span
                                 class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Done</span>
                             <a href="{{ route('shipping-details') }}">
                                 <span
@@ -37,29 +36,34 @@
                                 viewBox="0 0 20 20">
                                 <path
                                     d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" />
-                            </svg>
+                            </svg> --}}
 
 
+
+                            <div class="p-2 bg-green-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
+                                role="alert">
+                                <span
+                                    class="flex rounded-full bg-green-900 uppercase px-2 py-1 text-xs font-bold mr-3">العودة</span>
+                                @foreach ($item->genericArticles as $img)
+                                    <a href="{{ route('Articles', [$assemblyGroupNodeId, $carId]) }}">
+                                        <span class="font-semibold mr-2 text-left flex-auto">تمت إضافة المنتجات بنجاح هل
+                                            تود
+                                            العودة للخلف </span>
+                                    </a>
+                                @endforeach
+
+                                <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" />
+                                </svg>
+
+
+                            </div>
                         </div>
-                        <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
-                            role="alert">
-                            <span
-                                class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Back</span>
-                            <a href="{{ route('Articles') }}">
-                                <span class="font-semibold mr-2 text-left flex-auto">Go Back Shopping</span>
-                            </a>
-                            <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20">
-                                <path
-                                    d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" />
-                            </svg>
+                    @endif
 
 
-                        </div>
-                    </div>
-                @endif
-
-                @foreach ($data as $item)
                     <form action="{{ route('Cart-Add') }}" method="post">
                         @csrf
                         @foreach ($item->genericArticles as $name)
@@ -77,6 +81,7 @@
 
 
                                 @foreach ($item->images as $img)
+
                                     <img src="{{ $img->imageURL800 }}" alt="">
                                     <input type="hidden" name="img" value="{{ $img->imageURL800 }}">
 
@@ -87,12 +92,15 @@
                                     <input type="hidden" name="manufacturer" value="{{ $item->mfrId }}">
                                     <input type="hidden" name="articleNumber" value="{{ $item->articleNumber }}">
                                     <input type="hidden" name="price" value="{{ rand(99, 299) }}">
+                                    <input type="hidden" name="carId" value="{{ $carDetails->carId }}">
 
                                 @endforeach
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">موديل السيارة</div>
-                                <div class="text-center">ES240, ES250, ES300H, ES350</div>
+                                <div class="text-center">
+                                    {{ $carDetails->manuName . ' - ' . $carDetails->modelName . ' ' . substr($carDetails->yearOfConstrFrom, 0, 4) }}
+                                </div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">نوع السيارة</div>
@@ -104,7 +112,7 @@
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">المحرك</div>
-                                <div class="text-center">2.5L</div>
+                                <div class="text-center">{{ $carDetails->typeName }}</div>
                             </div>
 
 
@@ -116,19 +124,36 @@
 
                             <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
                                 <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
-                                <div class="text-center">98.32 SR</div>
+                                <div class="text-center">ستصلك رسالة بالتسعيرة </div>
                             </div>
                         </div>
 
-                @endforeach
-            </div>
+        @endforeach
+    </div>
+    </form>
 
-            @csrf
-            <div class="mt-10 flex justify-end">
-                <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
-                    الشراء</button>
-            </div>
-            </form>
+    <form action="{{ route('Cart-Buy') }}" method="post">
+        @foreach ($item->images as $img)
+            <input type="hidden" name="img" value="{{ $img->imageURL800 }}">
+            <input type="hidden" name="dataSupplierId" value="{{ $item->dataSupplierId }}">
+            <input type="hidden" name="manufacturer" value="{{ $item->mfrId }}">
+            <input type="hidden" name="articleNumber" value="{{ $item->articleNumber }}">
+            <input type="hidden" name="price" value="{{ rand(99, 299) }}">
+            <input type="hidden" name="carId" value="{{ $carDetails->carId }}">
+
+        @endforeach
+        @foreach ($item->genericArticles as $img)
+            <input type="hidden" name="genericArticleId" value={{ $img->genericArticleId }}>
+            <input type="hidden" name="price" value={{ $carDetails->carId }}>
+
+        @endforeach
+
+        @csrf
+        <div class="mt-10 flex justify-end">
+            <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
+                الشراء</button>
         </div>
+    </form>
+    </div>
     </div>
 </x-theme-layout>

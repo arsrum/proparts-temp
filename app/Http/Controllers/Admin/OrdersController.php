@@ -10,6 +10,8 @@ use App\Models\Address;
 use App\Models\Order;
 use App\Models\Status;
 use App\Models\User;
+use App\Models\order_products;
+
 use Gate;
 use Auth;
 use Illuminate\Http\Request;
@@ -93,10 +95,10 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         abort_if(Gate::denies('order_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $order->load('user', 'address', 'status');
+        $order_products = order_products::get()->where('order_id',$order->id);
 
-        return view('admin.orders.show', compact('order'));
+        return view('admin.orders.show', compact('order','order_products'));
     }
 
     public function destroy(Order $order)
