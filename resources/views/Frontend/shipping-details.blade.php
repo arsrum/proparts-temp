@@ -22,7 +22,7 @@
         <div class="w-full">
             <form action="{{ route('payment') }}" method="POST" class="mt-20">
 
-@csrf
+                @csrf
 
 
                 <div class="max-w-3xl mx-auto my-16">
@@ -49,46 +49,45 @@
                         </div>
 
 
-                            <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
-                                <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                    <div class="">الدولة</div>
-                                    <div class="text-center">
-                                        <x-jet-input placeholder="المملكة العربية السعودية" id="country" class="block mt-1 w-full" type="text"
-                                            name="country"  />
-                                    </div>
-                                    <div class="text-center"></div>
+                        <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">الدولة</div>
+                                <div class="text-center">
+                                    <x-jet-input placeholder="المملكة العربية السعودية" id="country"
+                                        class="block mt-1 w-full" type="text" name="country" />
                                 </div>
-                                <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                    <div class="">المنطقة</div>
-                                    <div class="text-center">
-                                        <x-jet-input placeholder="منطقة عسير" id="state" class="block mt-1 w-full" type="text"
-                                            name="state" :value="old('qty')"  />
-                                    </div>
-                                    {{-- <select name="state" id="state">
+                                <div class="text-center"></div>
+                            </div>
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">المنطقة</div>
+                                <div class="text-center">
+                                    <x-jet-input placeholder="منطقة عسير" id="state" class="block mt-1 w-full"
+                                        type="text" name="state" :value="old('qty')" />
+                                </div>
+                                {{-- <select name="state" id="state">
                                         <option disabled="disabled" selected="true" value="">أختر </option>
                                         <option value="aseer">Aseer</option>
 
                                     </select> --}}
-                                    <div class="text-center"></div>
-                                </div>
-                                <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                    <div class="">المدينة</div>
-                                    <x-jet-input placeholder="مدينة أبها" id="city" class="block mt-1 w-full" type="text"
-                                        name="city" :value="old('qty')"  />
-                                    <div class="text-center"></div>
-                                </div>
-                                <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                    <div class="">عنوان الشارع</div>
-                                    <x-jet-input placeholder="8996 حي الوردتين شارع الجميمة" id="street_address" class="block mt-1 w-full" type="text"
-                                    name="street_address" :value="old('qty')"  />
-                                    <div class="text-center"></div>
-                                </div>
-{{--                             
-                                <div class="bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
+                                <div class="text-center"></div>
+                            </div>
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">المدينة</div>
+                                <x-jet-input placeholder="مدينة أبها" id="city" class="block mt-1 w-full" type="text"
+                                    name="city" :value="old('qty')" />
+                                <div class="text-center"></div>
+                            </div>
+                            <div class="bg-white grid grid-cols-2 py-2 px-4">
+                                <div class="">عنوان الشارع</div>
+                                <x-jet-input placeholder="8996 حي الوردتين شارع الجميمة" id="street_address"
+                                    class="block mt-1 w-full" type="text" name="street_address" :value="old('qty')" />
+                                <div class="text-center"></div>
+                            </div>
+                            {{-- <div class="bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
                                     <div class="">الإجمالي <span class="text-xs">شامل الضريبة</span></div>
                                     <div class="text-center">98.32 SR</div>
                                 </div> --}}
-                            </div>
+                        </div>
                 </div>
                 <div class="mt-10 flex justify-end">
                     <button type="submit"
@@ -107,11 +106,11 @@
                             تسجيل الدخول
 
                         </a></div>
-                    <div class=""><a href="{{ route('user-register.show') }}"
+                    {{-- <div class=""><a href="{{ route('user-register.show') }}"
                             class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
                             تسجيل حساب جديد
 
-                        </a></div>
+                        </a></div> --}}
                     <div class="text-center">
 
                     </div>
