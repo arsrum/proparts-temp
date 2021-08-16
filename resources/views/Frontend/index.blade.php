@@ -76,7 +76,7 @@
              </ul>
          </div>
          <div class=" pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
-             منتجات Pro Parts
+             Pro Parts Products
          </div>
 
          <form action="" class="mt-20">

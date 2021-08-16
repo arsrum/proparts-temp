@@ -36,7 +36,7 @@
                             <button type="submit">
 
                                 <div class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                                    تسجيل دخول
+                                    Login
                                 </div>
 
                             </button>

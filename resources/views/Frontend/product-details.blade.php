@@ -42,12 +42,11 @@
 
                         <div class="p-2 bg-green-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
                             role="alert">
-                            <span
-                                class="flex rounded-full bg-green-900 uppercase px-2 py-1 text-xs font-bold mr-3">العودة</span>
-                                <a href="{{ route('inventory') }}">
-                                    <span class="font-semibold mr-2 text-left flex-auto">تمت إضافة المنتجات بنجاح هل تود
-                                        العودة للخلف </span>
-                                </a>
+                            <span class="flex rounded-full bg-green-900 uppercase px-2 py-1 text-xs font-bold mr-3">Go
+                                Back</span>
+                            <a href="{{ route('inventory') }}">
+                                <span class="font-semibold mr-2 text-left flex-auto">Done </span>
+                            </a>
 
                             <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20">
@@ -84,13 +83,15 @@
                             <input type="hidden" name="articleNumber" value="{{ $Products->id }}">
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">تفاصيل المنتج</div>
+                            <div class="">Product Details </div>
                             <div class="text-center">{{ $Products->description }}</div>
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">الكمية </div>
-                            <div class="text-center"> <x-jet-input placeholder="1" id="qty" class="block mt-1 w-full" type="number" name="qty"
-                                :value="old('qty')" required  /></div>
+                            <div class="">Quantity </div>
+                            <div class="text-center">
+                                <x-jet-input placeholder="1" id="qty" class="block mt-1 w-full" type="number" name="qty"
+                                    :value="old('qty')" required />
+                            </div>
                         </div>
                         <div class="col-start-2 col-span-2   grid grid-cols-2 py-2 px-4">
 
@@ -104,13 +105,13 @@
 
 
                         <button type="submit">
-                            <div class="bg-ornage-start flex items-center justify-center text-white font-bold">إضافة
-                                للعربة
+                            <div class="bg-ornage-start flex items-center justify-center text-white font-bold">
+                                Add To Cart
                             </div>
                         </button>
 
                         <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                            <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
+                            <div class="">Price <span class="text-xs">VAT Included </span></div>
                             <div class="text-center">{{ $Products->price }} SR</div>
                         </div>
                     </div>
@@ -118,22 +119,21 @@
 
             </div>
 
-         
+
             </form>
             <form action="{{ route('Cart-Buy') }}" method="post">
-               
-                    <input type="hidden" name="img" value="{{ $Products->image }}">
-                    <input type="hidden" name="dataSupplierId" value="{{ $Products->user_id }}">
-                    <input type="hidden" name="manufacturer" value="{{ $Products->user_id }}">
-                    <input type="hidden" name="articleNumber" value="{{ $Products->id }}">
-                    <input type="hidden" name="genericArticleId" value={{ $Products->id }}>
-                    <input type="hidden" name="price" value={{ $Products->price}}>
-                    <input type="hidden" name="name" value={{ $Products->name }}>
+
+                <input type="hidden" name="img" value="{{ $Products->image }}">
+                <input type="hidden" name="dataSupplierId" value="{{ $Products->user_id }}">
+                <input type="hidden" name="manufacturer" value="{{ $Products->user_id }}">
+                <input type="hidden" name="articleNumber" value="{{ $Products->id }}">
+                <input type="hidden" name="genericArticleId" value={{ $Products->id }}>
+                <input type="hidden" name="price" value={{ $Products->price }}>
+                <input type="hidden" name="name" value={{ $Products->name }}>
                 @csrf
                 <div class="mt-10 flex justify-end">
-                    <button type="submit"
-                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
-                        الشراء</button>
+                    <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
+                        Checkout</button>
                 </div>
             </form>
         </div>

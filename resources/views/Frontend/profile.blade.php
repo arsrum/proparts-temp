@@ -27,19 +27,16 @@
 
                     </div>
                     <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                        <div class="">الأسم </div>
+                        <div class="">Name </div>
                         <div class="text-center">{{ $user->name }}</div>
                     </div>
                     <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                        <div class="">البريد الإليكتروني </div>
+                        <div class="">Email </div>
                         <div class="text-center">{{ $user->email }}</div>
                     </div>
+
                     <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                        <div class=""> رقم الجوال</div>
-                        <div class="text-center">أصلي</div>
-                    </div>
-                    <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                        <div class="">طلباتي</div>
+                        <div class="">My Orders</div>
                         <div class="text-center">5</div>
                     </div>
 
@@ -47,7 +44,7 @@
                     <button type="submit">
                         <a href="{{ route('orders') }}">
                             <div class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                                عرض طلباتي
+                                Show Orders
                             </div>
                         </a>
                     </button>

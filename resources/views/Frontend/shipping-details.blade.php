@@ -29,9 +29,10 @@
                     @if (Auth::check())
                         @if ($addresses->count() > 0)
                             <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">أختر عنوان من عناوينك المسجلة مسبقاُ</div>
+                                <div class="">Choose a previously saved Address </div>
                                 <select name="address" id="address">
-                                    <option selected="true" disabled="disabled" value="0">أختر عنوان <Address></Address>
+                                    <option selected="true" disabled="disabled" value="0">Choose Address <Address>
+                                        </Address>
                                     </option>
                                     @foreach ($addresses as $address)
                                         <option value="{{ $address->id }}">
@@ -45,24 +46,24 @@
                         @endif
 
                         <div class=" pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
-                            أو سجل عنوان جديد
+                            Or Create a new one
                         </div>
 
 
                         <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
                             <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">الدولة</div>
+                                <div class="">Country</div>
                                 <div class="text-center">
-                                    <x-jet-input placeholder="المملكة العربية السعودية" id="country"
-                                        class="block mt-1 w-full" type="text" name="country" />
+                                    <x-jet-input placeholder="KSA" id="country" class="block mt-1 w-full" type="text"
+                                        name="country" />
                                 </div>
                                 <div class="text-center"></div>
                             </div>
                             <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">المنطقة</div>
+                                <div class="">State</div>
                                 <div class="text-center">
-                                    <x-jet-input placeholder="منطقة عسير" id="state" class="block mt-1 w-full"
-                                        type="text" name="state" :value="old('qty')" />
+                                    <x-jet-input placeholder="Assir" id="state" class="block mt-1 w-full" type="text"
+                                        name="state" :value="old('qty')" />
                                 </div>
                                 {{-- <select name="state" id="state">
                                         <option disabled="disabled" selected="true" value="">أختر </option>
@@ -72,14 +73,14 @@
                                 <div class="text-center"></div>
                             </div>
                             <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">المدينة</div>
-                                <x-jet-input placeholder="مدينة أبها" id="city" class="block mt-1 w-full" type="text"
+                                <div class="">City</div>
+                                <x-jet-input placeholder="Abha" id="city" class="block mt-1 w-full" type="text"
                                     name="city" :value="old('qty')" />
                                 <div class="text-center"></div>
                             </div>
                             <div class="bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">عنوان الشارع</div>
-                                <x-jet-input placeholder="8996 حي الوردتين شارع الجميمة" id="street_address"
+                                <div class="">Street Address</div>
+                                <x-jet-input placeholder="8996 Aseer Street" id="street_address"
                                     class="block mt-1 w-full" type="text" name="street_address" :value="old('qty')" />
                                 <div class="text-center"></div>
                             </div>
@@ -90,20 +91,19 @@
                         </div>
                 </div>
                 <div class="mt-10 flex justify-end">
-                    <button type="submit"
-                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
-                        الشراء</button>
+                    <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
+                        Checkout</button>
                 </div>
             </form>
         @else
             <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
                 <div class=" pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
-                    يجب عليك تسجيل الدخول لإتمام العملية أو تسجيل حساب جديد
+                    You Need To Be Logged In To Complete The Purchase
                 </div>
                 <div class="bg-white grid grid-cols-2 py-2 px-4">
                     <div class=""><a href="{{ route('user-login.show') }}"
                             class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
-                            تسجيل الدخول
+                            Login
 
                         </a></div>
                     {{-- <div class=""><a href="{{ route('user-register.show') }}"

@@ -37,7 +37,7 @@
 
         <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
             <div class=" pt-3 px-4 font-bold text-ornage-start text-xl">
-                السيارة المختارة :
+                Vehicle :
             </div>
             <div class="bg-white grid grid-cols-2 py-2 px-4">
                 <div class=""><a href="{{ route('user-login.show') }}"

@@ -22,7 +22,8 @@
         <div class="w-full">
             <div class="max-w-3xl mx-auto my-16">
 
-                <p class="text-center text-3xl font-light">تم طلبك بنجاح .. نأمل لك تجربة مميزة مع بروبارتس</p>
+                <p class="text-center text-3xl font-light">
+                    You Order Has been done successfully ... we hope you had a wonderful experience with ProParts</p>
 
             </div>
             <div class="mt-10 flex justify-end">
@@ -32,8 +33,7 @@
                     <div class="mt-10 flex justify-end">
                         <button type="submit"
                             class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                            العودة للرئيسية
-                        </button>
+                            BackHome </button>
                     </div>
                 </form>
                 {{-- <a href="{{ route('home') }}" type="submit"

@@ -86,10 +86,10 @@
                             </button>
 
                             <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                                <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
+                                <div class="">Price <span class="text-xs">VAT Included</span></div>
                                 <div class="text-center">
 
-                                    ستصلك رسالة بتسعيرة القطعة
+                                    To Be Determined
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                 <a href="{{ route('home') }}">
 
                     <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">لا
-                        يوجد لديك منتجات في سلة المنتجات العودة للرئيسية
+                        You Don't have any parts in your cart
 
 
                     </button>
@@ -115,15 +115,15 @@
             <form action="{{ route('shipping-details') }}" class="mt-20">
                 <div class="mt-10 flex justify-end">
                     <button type="submit"
-                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">تأكيد
-                        الطلب</button>
+                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Confirm
+                        Order</button>
                 </div>
             </form>
             <form action="{{ route('Cart-Clear') }}" method="POST" class="mt-20">
                 @csrf
                 <div class="mt-10 flex justify-end">
                     <button type="submit"
-                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">حذف كافة المنتجات
+                        class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Clear Cart
                     </button>
                 </div>
             </form>

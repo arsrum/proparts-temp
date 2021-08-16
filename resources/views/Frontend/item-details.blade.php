@@ -46,9 +46,7 @@
                                     class="flex rounded-full bg-green-900 uppercase px-2 py-1 text-xs font-bold mr-3">العودة</span>
                                 @foreach ($item->genericArticles as $img)
                                     <a href="{{ route('Articles', [$assemblyGroupNodeId, $carId]) }}">
-                                        <span class="font-semibold mr-2 text-left flex-auto">تمت إضافة المنتجات بنجاح هل
-                                            تود
-                                            العودة للخلف </span>
+                                        <span class="font-semibold mr-2 text-left flex-auto">Done </span>
                                     </a>
                                 @endforeach
 
@@ -97,17 +95,17 @@
                                 @endforeach
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">موديل السيارة</div>
+                                <div class="">Car Info</div>
                                 <div class="text-center">
                                     {{ $carDetails->manuName . ' - ' . $carDetails->modelName . ' ' . substr($carDetails->yearOfConstrFrom, 0, 4) }}
                                 </div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">نوع السيارة</div>
+                                <div class="">Car Type</div>
                                 <div class="text-center">SEDAN</div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">نوع القطعة</div>
+                                <div class="">Part Type</div>
                                 <div class="text-center">أصلي</div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
@@ -117,14 +115,14 @@
 
 
                             <button type="submit">
-                                <div class="bg-ornage-start flex items-center justify-center text-white font-bold">إضافة
-                                    للعربة
+                                <div class="bg-ornage-start flex items-center justify-center text-white font-bold">Add
+                                    To Cart
                                 </div>
                             </button>
 
                             <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                                <div class="">السعر <span class="text-xs">شامل الضريبة</span></div>
-                                <div class="text-center">ستصلك رسالة بالتسعيرة </div>
+                                <div class="">Price <span class="text-xs">VAT Included </span></div>
+                                <div class="text-center">To Be Determined </div>
                             </div>
                         </div>
 
@@ -151,8 +149,8 @@
 
         @csrf
         <div class="mt-10 flex justify-end">
-            <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">اتمام
-                الشراء</button>
+            <button type="submit"
+                class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Purchase</button>
         </div>
     </form>
     </div>

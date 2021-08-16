@@ -3,8 +3,7 @@
         dir="rtl">
         <div class="mt-5">
             <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
-                تواصل معنا
-
+                Contact Us
             </div>
         </div>
         @if (Session::has('success'))
@@ -29,24 +28,19 @@
                 <div class="max-w-3xl mx-auto my-16">
                     <div class="mt-5 grid grid-cols-1 grid-rows-3 gap-5 w-full">
                         <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">الأسم</div>
+                            <div class="">Name</div>
                             <input type="text" name="name" id="name">
                             <div class="text-center"></div>
                         </div>
-                        <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">عنوان الرسالة</div>
-                            <input type="text" name="title" id="title">
 
-                            <div class="text-center"></div>
-                        </div>
                         <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class=""> الرسالة</div>
+                            <div class=""> Message</div>
                             <input type="text" name="message" id="message">
 
                             <div class="text-center"></div>
                         </div>
                         <div class="bg-white grid grid-cols-2 py-2 px-4">
-                            <div class="">رقم الجوال</div>
+                            <div class="">Mobile </div>
                             <input type="number" name="mobile" id="mobile">
                             <div class="text-center"></div>
                         </div>
@@ -56,7 +50,7 @@
                 </div>
                 <div class="mt-10 flex justify-end">
                     <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                        إرسال</button>
+                        Send</button>
                 </div>
             </form>
         </div>

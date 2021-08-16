@@ -4,10 +4,10 @@
     @csrf
     <div class="flex flex-col sm:flex-row justify-center sm:space-x-8 sm:space-x-reverse">
         <div class="">
-            <label class="block text-xl font-black mb-1" for="">الشركة</label>
+            <label class="block text-xl font-black mb-1" for="">Manufacture</label>
             <select id="country" name="manuId"
                 class="border-transparent bg-gray-100 rounded-full w-full sm:w-auto mb-5 sm:mb-0">
-                <option value="" selected disabled>الشركة المصنعة </option>
+                <option value="" selected disabled>Manufacture </option>
                 @foreach ($data as $key => $country)
                     <option value="{{ $country->manuId }}">
                         {{ $country->manuName }}</option>
@@ -17,32 +17,32 @@
 
         </div>
         <div class="">
-            <label class="block text-xl font-black mb-1" for="">النوع</label>
+            <label class="block text-xl font-black mb-1" for="">Model</label>
             <select name="modelId" id="state"
-                class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-5 sm:mb-0""><option value="">أختر النوع</option></select>   
+                class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-5 sm:mb-0""><option value="">Choose Model </option></select>   
                     </div>
                     <div class="">
-                        <label class=" block text-xl font-black mb-1" for="">الموديل</label>
+                        <label class=" block text-xl font-black mb-1" for="">Type</label>
                 <select name="typeId" id="city"
                     class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-5 sm:mb-0"" name="" id="">
-                            <option value="">أختر الموديل </option>
+                            <option value="">Choose Type  </option>
                         </select>
                     </div>
-                    <div class=" sm:mt-8 text-3xl font-bold text-ornage-start">أو
+                    <div class=" sm:mt-8 text-3xl font-bold text-ornage-start">Or
         </div>
         <div class="">
-            <label class=" block text-xl font-black mb-1" for="">رقم القطعة</label>
-            <input type="text" name="vin" id="vin" disabled placeholder="أدخل رقم الهيكل"
+            <label class=" block text-xl font-black mb-1" for="">OEM Part Number </label>
+            <input type="text" name="vin" id="vin" disabled placeholder="Enter a Vin Number  "
                 class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
                             </div>
-                    <div class=" sm:mt-8 text-3xl font-bold text-ornage-start">أو
+                    <div class=" sm:mt-8 text-3xl font-bold text-ornage-start">Or
         </div>
 
         @csrf
         <div class="">
             <label class="block text-xl font-black mb-1" for="">
-                رقم الهيكل</label>
-            <input type="text" name="vin" id="vin" value="KMHCT41DXEU538925" placeholder="أدخل رقم الهيكل"
+                Vin Number </label>
+            <input type="text" name="vin" id="vin" value="KMHCT41DXEU538925" placeholder="Enter A Vin Number"
                 class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
                         <div class=" text-center">
         </div>
@@ -50,7 +50,8 @@
     </div>
     </div>
     <div class=" mt-10 flex justify-end">
-        <button type="submit" class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">البدء</button>
+        <button type="submit"
+            class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Search</button>
     </div>
 </form>
 {{-- <form method="post" action="{{ route('AssemblyGroups') }}">
