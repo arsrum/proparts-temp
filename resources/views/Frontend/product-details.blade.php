@@ -123,7 +123,7 @@
             </form>
             <form action="{{ route('Cart-Buy') }}" method="post">
 
-                <input type="hidden" name="img" value="{{ $Products->image }}">
+                <input type="hidden" name="img" value="/image/{{ $Products->image }}">
                 <input type="hidden" name="dataSupplierId" value="{{ $Products->user_id }}">
                 <input type="hidden" name="manufacturer" value="{{ $Products->user_id }}">
                 <input type="hidden" name="articleNumber" value="{{ $Products->id }}">

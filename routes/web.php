@@ -12,9 +12,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//   return view('dashboard');
-// })->name('dashboard');
+// Route::get('image/{id}', function ($id) {
+//   $profile_picture_url =  "https://webservice.tecalliance.services/pegasus-3-0/documents/22735/$id/0?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn";
+//   $filename = 'temp-image.jpg';
+//   $tempImage = tempnam(sys_get_temp_dir(), $filename);
+//   copy($profile_picture_url, $tempImage);
+//   return response()->file($tempImage);
+
+// })->name('image');
+Route::get('/image/{id}', 'FrontEnd\SearchController@images')->name('image');
+
 Route::get('/home', 'FrontEnd\SearchController@Manufactures')->name('home');
 Route::post('/main-partss', 'FrontEnd\SearchController@AssemblyGroups')->name('AssemblyGroups');
 Route::post('/main-parts', 'FrontEnd\SearchController@getVehicleByVin')->name('getVehicleByVin');

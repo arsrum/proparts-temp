@@ -169,15 +169,64 @@ class SearchController
               
             }
           }
+          //end of get vehicle by Vin 
+
           $carId=$request->typeId;
-          return view('Frontend.main-parts',compact('parts','carId'));
+          //get vehicle details
+          $carDetailsCurl = curl_init();
+          curl_setopt_array($carDetailsCurl, array(
+            CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+    
+              "getVehicleByIds4": {
+                "articleCountry": "SA",
+                "carIds": {
+                  "array": [
+                    '.$carId.'
+                  ]
+                },
+                "countriesCarSelection": "SA",
+                "country": "SA",
+                "lang": "en",
+                "provider": 22735
+            
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Content-Type: application/json'
+            ),
+          ));
+          $response = curl_exec($carDetailsCurl);
+          
+          $decodedResponse = json_decode($response);
+          
+          curl_close($carDetailsCurl);
+
+          foreach($decodedResponse->data as $carValue){
+            foreach ($carValue as $carData) {
+                $tecDocCarId=$carData->vehicleDocId;
+                $vehicleDetails[]=$carData->vehicleDetails;
+                // return response()->json($vehicleDetails);
+
+            }
+          }
+          //end of vehicle details 
+
+          return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails'));
     
          }
          else
-
+         //start of get vehicle by vin number 
         $curl = curl_init();
+        //parse vin number
         $vin = trim(json_encode($request->vin),"''");
-
+         
       curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
         CURLOPT_RETURNTRANSFER => true,
@@ -219,6 +268,9 @@ class SearchController
         }
       }
 
+      //end of identifying the car 
+
+      // get parts of the vehicle 
 
       $curlParts = curl_init();
       curl_setopt_array($curlParts, array(
@@ -258,8 +310,56 @@ class SearchController
           
         }
       }
-      // return response()->json($parts);
-      return view('Frontend.main-parts',compact('parts','carId','word'));
+      //end of vehicle parts
+
+      //start of getting vehicle details 
+//      $carId=$request->typeId;
+
+          //get vehicle details
+          $carDetailsCurl = curl_init();
+          curl_setopt_array($carDetailsCurl, array(
+            CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+    
+              "getVehicleByIds4": {
+                "articleCountry": "SA",
+                "carIds": {
+                  "array": [
+                    '.$carId.'
+                  ]
+                },
+                "countriesCarSelection": "SA",
+                "country": "SA",
+                "lang": "en",
+                "provider": 22735
+            
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Content-Type: application/json'
+            ),
+          ));
+          $response = curl_exec($carDetailsCurl);
+          
+          $decodedResponse = json_decode($response);
+          // return response()->json($decodedResponse);
+
+          curl_close($carDetailsCurl);
+
+          foreach($decodedResponse->data as $carValue){
+            foreach ($carValue as $carData) {
+                $tecDocCarId=$carData->vehicleDocId;
+                $vehicleDetails[]=$carData->vehicleDetails;
+
+            }
+          }
+          return view('Frontend.main-parts',compact('parts','carId','word','tecDocCarId','vehicleDetails'));
 
       }
 
@@ -436,5 +536,12 @@ class SearchController
         //  return response()->json($carDetails, 200);
         return view('Frontend.item-details',compact('data','assemblyGroupNodeId','id','carId','carDetails'));
 
+      }
+      public  function images($id) {
+         $profile_picture_url =  "https://webservice.tecalliance.services/pegasus-3-0/documents/22735/$id/0?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn";
+        $filename = 'temp-image.jpg';
+        $tempImage = tempnam(sys_get_temp_dir(), $filename);
+        copy($profile_picture_url, $tempImage);
+        return response()->file($tempImage);
       }
 }

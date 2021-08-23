@@ -13,7 +13,10 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-
+    'tec_doc' => [
+        'api' => env('TEC_DOC_API'),
+        'provider' => env('TEC_DOC_PROVIDER'),
+    ],
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

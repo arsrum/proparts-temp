@@ -99,7 +99,7 @@
     $('#country').change(function() {
         var manufactureId = $(this).val();
         console.log(manufactureId);
-
+        var variable2 = 2021;
         if (manufactureId) {
             $.ajax({
                 type: "GET",
@@ -118,6 +118,12 @@
                                 key,
                                 value
                             ) {
+                                if (value.yearOfConstrTo == undefined) {
+                                    variable2 = "2021";
+                                } else {
+                                    variable2 = value.yearOfConstrTo.toString().substr(0, 4);
+
+                                }
                                 $("#state")
                                     .append(
                                         '<option value="' +
@@ -125,7 +131,13 @@
                                         .modelId + '|' + manufactureId +
                                         '">' +
                                         value
-                                        .modelname + '</option>'
+                                        .modelname +
+                                        ' ' +
+                                        value
+                                        .yearOfConstrFrom.toString().substr(0, 4) +
+                                        ' - ' +
+                                        variable2 +
+                                        '</option>'
                                     );
                             });
 

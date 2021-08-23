@@ -98,11 +98,16 @@
                                 <div class="">Car Info</div>
                                 <div class="text-center">
                                     {{ $carDetails->manuName . ' - ' . $carDetails->modelName . ' ' . substr($carDetails->yearOfConstrFrom, 0, 4) }}
+                                    @if (isset($carDetails->yearOfConstrTo))
+                                        - {{ substr($carDetails->yearOfConstrTo, 0, 4) }}
+                                    @else
+                                        - {{ date('Y') }}
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Car Type</div>
-                                <div class="text-center">SEDAN</div>
+                                <div class="text-center">{{ $carDetails->manuName }}</div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Part Type</div>
