@@ -42,7 +42,7 @@
         <div class="">
             <label class="block text-xl font-black mb-1" for="">
                 Vin Number </label>
-            <input type="text" name="vin" id="vin" value="KMHCT41DXEU538925" placeholder="Enter A Vin Number"
+            <input type="text" name="vin" id="vin" placeholder="Enter A Vin Number"
                 class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
                         <div class=" text-center">
         </div>
@@ -54,6 +54,7 @@
             class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Search</button>
     </div>
 </form>
+{{-- value="KMHCT41DXEU538925" --}}
 {{-- <form method="post" action="{{ route('AssemblyGroups') }}">
     @csrf
     <div class="row">
