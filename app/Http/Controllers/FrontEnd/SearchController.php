@@ -342,7 +342,7 @@ class SearchController
             "lang": "EN",
             "linked": true,
             "linkingTargetType": "P",
-            "linkingTargetId": '.$part.',
+            "linkingTargetId": '.$word->carId.',
             "provider": 22735
           }
         }',
@@ -350,7 +350,7 @@ class SearchController
           'Content-Type: application/json'
         ),
       ));
-      $carId=$part;
+      $carId=$word->carId;
       $articles = curl_exec($curlParts);
       
       $curls = json_decode($articles);
