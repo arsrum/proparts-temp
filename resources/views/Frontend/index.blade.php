@@ -1,7 +1,7 @@
  <x-theme-layout>
      <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
          dir="rtl">
-         <div class="carousel">
+         {{-- <div class="carousel">
              <div class="carousel-inner">
                  <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
                      checked="checked">
@@ -36,7 +36,7 @@
                      </li>
                  </ol>
              </div>
-         </div>
+         </div> --}}
          <div class="mt-5">
              <ul class="flex text text-white font-bold">
                  <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center">1</li>

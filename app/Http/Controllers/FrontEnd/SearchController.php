@@ -162,7 +162,58 @@ class SearchController
           $nodes = json_decode($articles);
           
           curl_close($curl);
+          if($nodes->data==""){
+           $parts=false;
+          $carId=$request->typeId;
+          //get vehicle details
+          $carDetailsCurl = curl_init();
+          curl_setopt_array($carDetailsCurl, array(
+            CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
           
+              "getVehicleByIds4": {
+                "articleCountry": "SA",
+                "carIds": {
+                  "array": [
+                    '.$carId.'
+                  ]
+                },
+                "countriesCarSelection": "SA",
+                "country": "SA",
+                "lang": "en",
+                "provider": 22735
+            
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Content-Type: application/json'
+            ),
+          ));
+          $response = curl_exec($carDetailsCurl);
+          
+          $decodedResponse = json_decode($response);
+          
+          curl_close($carDetailsCurl);
+
+          foreach($decodedResponse->data as $carValue){
+            foreach ($carValue as $carData) {
+                $tecDocCarId=$carData->vehicleDocId;
+                $vehicleDetails[]=$carData->vehicleDetails;
+                // return response()->json($vehicleDetails);
+
+            }
+          }
+          //end of vehicle details 
+
+          return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails'));
+    
+          }
           foreach($nodes->data as $value){
             foreach ($value as $data) {
                 $parts[]=$data;
@@ -267,6 +318,8 @@ class SearchController
           }
         }
       }
+      // return response()->json($part);
+
 
       //end of identifying the car 
 
@@ -289,7 +342,7 @@ class SearchController
             "lang": "EN",
             "linked": true,
             "linkingTargetType": "P",
-            "linkingTargetId": '.$word->carId.',
+            "linkingTargetId": '.$part.',
             "provider": 22735
           }
         }',
@@ -297,7 +350,7 @@ class SearchController
           'Content-Type: application/json'
         ),
       ));
-      $carId=$word->carId;
+      $carId=$part;
       $articles = curl_exec($curlParts);
       
       $curls = json_decode($articles);

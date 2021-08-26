@@ -70,28 +70,40 @@
         </div>
         <div class="w-full">
             {{-- <form action="{{ route('sub-parts') }}" class="mt-20"> --}}
+            @if (!$parts)
+                <div class="max-w-3xl mx-auto my-16">
 
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
-                @foreach ($parts as $item)
-                    <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
+                    <p class="text-center text-3xl font-light">
+                        There Is No Parts For This ‏ Particular Vehicle
+                    </p>
 
-                        <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
-                            <img src="                     @if (file_exists('imgs/' .
-                                $item->assemblyGroupNodeId . '.png')) imgs/{{ $item->assemblyGroupNodeId }}.png
-                        @else
-                            imgs/default.png @endif" class="mb-5" alt="">
-                            <h2 class="text-lg sm:text-2xl text-center">
-                                {{ $item->assemblyGroupName }}
-                            </h2>
-                        </a>
-                    </div>
-                @endforeach
+                </div>
 
-            </div>
-            <div class="mt-10 flex justify-end">
+            @else
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
 
-            </div>
-            {{-- </form> --}}
+
+                    @foreach ($parts as $item)
+                        <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
+
+                            <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
+                                <img src="                             @if (file_exists('imgs/' . $item->assemblyGroupNodeId . '.png'))
+                                imgs/{{ $item->assemblyGroupNodeId }}.png
+                            @else
+                                imgs/default.png @endif" class="mb-5" alt="">
+                                <h2 class="text-lg sm:text-2xl text-center">
+                                    {{ $item->assemblyGroupName }}
+                                </h2>
+                            </a>
+                        </div>
+                    @endforeach
+            @endif
+
         </div>
+        <div class="mt-10 flex justify-end">
+
+        </div>
+        {{-- </form> --}}
+    </div>
     </div>
 </x-theme-layout>
