@@ -1296,17 +1296,14 @@ select {
 .h-2 {
 	height: 0.5rem;
 }
-.h-1 {
-	height: 0.25rem;
-}
-.h-\[500px\] {
-	height: 500px;
-}
-.h-\[100px\] {
-	height: 100px;
-}
 .h-\[200px\] {
 	height: 200px;
+}
+.h-full {
+	height: 100%;
+}
+.h-1 {
+	height: 0.25rem;
 }
 .min-h-screen {
 	min-height: 100vh;

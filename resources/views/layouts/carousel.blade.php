@@ -24,7 +24,7 @@
         <div x-show="activeSlide === slide.id"
             class="font-bold text-5xl w-full h-[200px] sm:h-[500px] flex items-center text-white overflow-hidden rounded-2xl"
             style="">
-            <img :src="slide.src">
+            <img :src="slide.src" class="object-cover h-full">
         </div>
     </template>
 
