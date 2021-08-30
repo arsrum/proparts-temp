@@ -51,7 +51,7 @@
         <div class="flex items-center justify-center w-1/3 mx-auto">
             <template x-for="slide in slides" :key="slide.id">
                 <button
-                    class="flex-1 w-4 h-1 mx-2 mb-0 rounded-full overflow-hidden transition-colors duration-200 ease-out hover:bg-ornage-start hover:shadow-lg"
+                    class="flex-1 w-4 h-1 mx-1 sm:mx-2 mb-0 rounded-full overflow-hidden transition-colors duration-200 ease-out hover:bg-ornage-start hover:shadow-lg"
                     :class="{
                 'bg-ornage-start': activeSlide === slide.id,
                 'bg-red-200': activeSlide !== slide.id

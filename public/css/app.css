@@ -1133,9 +1133,9 @@ select {
 	margin-top: 4rem;
 	margin-bottom: 4rem;
 }
-.mx-2 {
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
+.mx-1 {
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -2316,6 +2316,11 @@ select {
 	.sm\:-my-px {
 		margin-top: -1px;
 		margin-bottom: -1px;
+	}
+
+	.sm\:mx-2 {
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
 	}
 
 	.sm\:ml-3 {
