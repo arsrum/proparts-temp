@@ -18,13 +18,13 @@
         }
     }
 </script>
-<div class="flex-1 mx-auto relative" x-data="da()">
+<div class="flex-1 mx-10 w-full relative" x-data="da()">
     <!-- Slides -->
     <template x-for="slide in slides" :key="slide.id">
         <div x-show="activeSlide === slide.id"
             class="font-bold text-5xl w-full h-[200px] sm:h-[500px] flex items-center text-white overflow-hidden rounded-2xl"
             style="">
-            <img :src="slide.src" class="object-cover h-full">
+            <img :src="slide.src" class="object-cover w-full h-full">
         </div>
     </template>
 
@@ -55,7 +55,8 @@
                     :class="{
                 'bg-ornage-start': activeSlide === slide.id,
                 'bg-red-200': activeSlide !== slide.id
-            }" x-on:click="activeSlide = slide.id"></button>
+            }"
+                    x-on:click="activeSlide = slide.id"></button>
             </template>
         </div>
     </div>
