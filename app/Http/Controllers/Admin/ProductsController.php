@@ -24,10 +24,42 @@ class ProductsController extends Controller
     {
         // abort_if(Gate::denies('contact_us_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.products.create');
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "getManufacturers2": {
+                "country": "sa",
+                "lang": "en",
+                "linkingTargetType": "p",
+                "provider": 22735
+              }
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $object = json_decode($response);
+        foreach($object->data as $articleDetails){
+        
+          foreach ($articleDetails as $value) {
+            $data[]=$value;
+          }
+        }
+        return view('admin.products.create',compact('data'));
     }
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

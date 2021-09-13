@@ -39,9 +39,33 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="title">OE Number</label>
+                    <input class="form-control {{ $errors->has('Price') ? 'is-invalid' : '' }}" type="text"
+                        name="oe_number" id="oe_number" value="{{ old('Price', '') }}">
+                    @if ($errors->has('title'))
+                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.contactUs.fields.title_helper') }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">OEM Number</label>
+                    <input class="form-control {{ $errors->has('Price') ? 'is-invalid' : '' }}" type="text"
+                        name="oem_number" id="oem_number" value="{{ old('Price', '') }}">
+                    @if ($errors->has('title'))
+                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.contactUs.fields.title_helper') }}</span>
+                </div>
+
+                <div class="form-group">
                     <strong>Image:</strong>
                     <input type="file" name="image" class="form-control" placeholder="image">
                 </div>
+
+
+                @include('layouts.car')
+
                 <div class="form-group">
                     <button class="btn btn-danger" type="submit">
                         {{ trans('global.save') }}
@@ -50,6 +74,7 @@
             </form>
         </div>
     </div>
+
 
 
 

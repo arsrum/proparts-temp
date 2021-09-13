@@ -14,6 +14,18 @@ class Products extends Model
         'description',
         'price',
         'image',
-        'user_id'
+        'user_id',
+        'manu_id',
+        'modelId',
+        'typeId',
+        'oe_number',
+        'oem_number'
     ];
+
+    // $table->string('manu_id')->nullable();
+    // $table->string('modelId')->nullable();
+    // $table->string('typeId')->nullable();
+    
+    // $table->string('oe_number')->nullable();
+    // $table->string('oem_number')->nullable();
 }
