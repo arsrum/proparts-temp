@@ -13,8 +13,8 @@
                 @foreach ($orders as $order)
 
                     <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
-                        My Orders
 
+                        <a href=""> My Orders</a>
                     </div>
 
 
@@ -25,22 +25,25 @@
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class="">Order No. </div>
-                            <div class="text-center">{{ $order->order_no }}</div>
+                            <div class=" text-center">
+                                {{ $order->order_no }}</div>
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class="">Order Status </div>
-                            <div class="text-center"> {{ $order->status->name ?? '' }}</div>
+                            <div class=" text-center">
+                                {{ $order->status->name ?? '' }}</div>
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class=""> Shipping Address </div>
-                            <div class="text-center">
+                            <div class="
+                                text-center">
                                 {{ $order->address->country ?? '' }} - {{ $order->address->state ?? '' }} -
                                 {{ $order->address->city ?? '' }} - {{ $order->address->street_address ?? '' }}
                             </div>
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class="">Products</div>
-                            <div class="text-center">5</div>
+                            <div class=" text-center">5</div>
                         </div>
 
                         <button type="submit">

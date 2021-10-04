@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomAuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,18 +45,27 @@ Route::get('/contact-us', 'FrontEnd\UserFrontendController@contactus')->name('co
 Route::post('/contact-us', 'FrontEnd\UserFrontendController@contactUsStore')->name('contact-us.store');
 Route::post('/store-address', 'Admin\AddressesController@store')->name('shipping-store');
 Route::get('/shipping-details', 'FrontEnd\OrderManagerController@index')->name('shipping-details');
-Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('user-login.show');
-Route::get('/user-register', 'Auth\RegisterController@create')->name('user-register.show');
-Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('user-login.show');
+// Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('user-login.show');
+// Route::get('/user-register', 'Auth\RegisterController@create')->name('user-register.show');
+// Route::get('/user-login', 'FrontEnd\UserFrontendController@loginShow')->name('user-login.show');
 
-Route::post('/user-login', 'FrontEnd\UserFrontendController@loginPost')->name('user-login.post');
-Route::get('/logout', 'FrontEnd\UserFrontendController@logout')->name('logout');
+// Route::post('/user-login', 'FrontEnd\UserFrontendController@loginPost')->name('user-login.post');
+// Route::get('/logout', 'FrontEnd\UserFrontendController@logout')->name('logout');
 Route::get('/products/show/{id}', 'Admin\ProductsController@show')->name('products.show');
 
  Route::get('/inventory', function () {
    return view('Frontend.inventory');
  })->name('inventory');
 
+
+ Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
+ Route::get('login', [CustomAuthController::class, 'index'])->name('user-login.show');
+ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+ Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
+ Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+ Route::get('registrationSeller', [CustomAuthController::class, 'registrationSelller'])->name('register-seller');
+ Route::post('custom-registrationSeller', [CustomAuthController::class, 'customRegistrationSeller'])->name('register.seller'); 
+ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 //  Route::get('/home', function () {
 //    return view('frontend.index');
@@ -144,6 +155,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('products', 'ProductsController@store')->name('products.store');
     Route::get('products/edit/{id}', 'ProductsController@edit')->name('products.edit');
     Route::put('products/edit/{id}', 'ProductsController@update')->name('products.update');
+
+    Route::get('list/create', 'ListController@create')->name('list.create');
+    Route::post('list', 'ListController@store')->name('list.store');
+    Route::get('list/edit/{id}', 'ListController@edit')->name('list.edit');
+    Route::put('list/edit/{id}', 'ListController@update')->name('list.update');
+    Route::delete('list/destroy', 'ListController@massDestroy')->name('list.massDestroy');
+    Route::get('list', 'ListController@index')->name('list.index');
 
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

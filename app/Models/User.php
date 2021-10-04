@@ -36,6 +36,10 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'store_name',
+        'cr',
+        'vendor',
+        'address',
         'email',
         'email_verified_at',
         'password',
@@ -51,7 +55,12 @@ class User extends Authenticatable
         self::created(function (User $user) {
             $registrationRole = config('panel.registration_default_role');
             if (!$user->roles()->get()->contains($registrationRole)) {
-                $user->roles()->attach($registrationRole);
+                if(                $user->vendor==1                )
+                {
+                    $user->roles()->attach(2);
+
+                }
+                
             }
         });
     }

@@ -84,11 +84,22 @@
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class="">Product Details </div>
-                            <div class="text-center">{{ $Products->description }}</div>
+                            <div class=" text-center">
+                                {{ $Products->description }}</div>
+                        </div>
+                        <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <div class="">Product Details </div>
+                            <div class=" text-center">
+                                {{ $Products->modelId }}
+                                {{ $Products->manu_id }}
+                                {{ $Products->typeId }}
+
+                            </div>
+
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class="">Quantity </div>
-                            <div class="text-center">
+                            <div class=" text-center">
                                 <x-jet-input placeholder="1" id="qty" class="block mt-1 w-full" type="number" name="qty"
                                     :value="old('qty')" required />
                             </div>
@@ -111,7 +122,7 @@
                         </button>
 
                         <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                            <div class="">Price <span class="text-xs">VAT Included </span></div>
+                            <div class="">Price <span class=" text-xs">VAT Included </span></div>
                             <div class="text-center">{{ $Products->price }} SR</div>
                         </div>
                     </div>

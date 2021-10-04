@@ -12,9 +12,8 @@
 
 
 
-                <form method="POST" action="{{ route('register.custom') }}">
+                <form method="POST" action="{{ route('register.seller') }}">
                     @csrf
-
                     <div class="mt-5 grid grid-cols-3 grid-rows-5 gap-5 w-full">
 
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
@@ -24,8 +23,26 @@
 
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                            <x-jet-label for="name" value="{{ __('name') }}" />
-                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name"
+                            <x-jet-label for="name" value="Owner Name" />
+                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                                required autofocus />
+
+                        </div>
+                        <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <x-jet-label for="name" value="Store Name" />
+                            <x-jet-input id="store_name" class="block mt-1 w-full" type="text" name="store_name"
+                                :value="old('store_name')" required autofocus />
+
+                        </div>
+                        <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <x-jet-label for="name" value="Cr" />
+                            <x-jet-input id="cr" class="block mt-1 w-full" type="text" name="cr" :value="old('cr')"
+                                required autofocus />
+
+                        </div>
+                        <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <x-jet-label for="name" value="Store Location" />
+                            <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address"
                                 :value="old('name')" required autofocus />
 
                         </div>
@@ -33,6 +50,9 @@
                             <x-jet-label for="password" value="{{ __('Password') }}" />
                             <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"
                                 required autocomplete="current-password" />
+
+                            <x-jet-input id="vendor" class="block mt-1 w-full" type="hidden" name="vendor" required
+                                value="1" />
                         </div>
 
 
@@ -42,7 +62,7 @@
                             <button type="submit">
 
                                 <div class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                                    تسجيل 
+                                    تسجيل دخول
                                 </div>
 
                             </button>

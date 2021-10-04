@@ -1,64 +1,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS Files -->
-<form method="POST" action="{{ route('getVehicleByVin') }}" class="mt-20">
-    @csrf
-    <div class="flex flex-col sm:flex-row justify-center sm:space-x-8 sm:space-x-reverse">
-        <div class="">
-            <label class=" block text-xl font-black mb-1" for="">Manufacture</label>
-            <select id="country" name="manuId"
-                class="border-transparent bg-gray-100 rounded-full w-full sm:w-auto mb-5 sm:mb-0">
 
-                <option value="" selected disabled>Poupilar Manufactures</option>
-                @foreach ($customList as $key => $country)
-                    <option value="{{ $country->manuId }}">
-                        {{ $country->manuName }}</option>
-                @endforeach
-                <option value="" disabled>other Manufactures</option>
 
-                @foreach ($data as $key => $country)
-                    <option value="{{ $country->manuId }}">
-                        {{ $country->manuName }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="">
-            <label class=" block text-xl font-black mb-1" for="">Model</label>
-            <select name="modelId" id="state"
-                class="border-transparent bg-gray-100 rounded-full  w-full sm:150px mb-5 sm:mb-0""><option value="">Choose Model </option></select>   
-                    </div>
-                    <div class="          ">
-                <label class=" block text-xl font-black mb-1" for="">Type</label>
-                <select name="typeId" id="city"
-                    class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-5 sm:mb-0"" name="" id="">
-                            <option value="">Choose Type  </option>
-                        </select>
-                    </div>
-                    <div class="           sm:mt-8 text-3xl font-bold text-ornage-start">Or
-        </div>
-        <div class="">
-            <label class=" block text-xl font-black mb-1" for="">OE Number </label>
-            <input type="text" name="vin" id="vin" placeholder="Enter a Vin Number  "
-                class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
-                            </div>
-                    <div class="           sm:mt-8 text-3xl font-bold text-ornage-start">Or
-        </div>
+<div class="form-group">
+    <label for="title">Manufacturer</label>
+    <select id="country" name="manuId" class="form-control">
+        <option value="" selected disabled>Manufacture </option>
+        @foreach ($data as $key => $country)
+            <option value="{{ $country->manuId }}|{{ $country->manuName }}">
+                {{ $country->manuName }}</option>
+        @endforeach
+    </select>
+</div>
+{{-- <div class="form-group">
+    <label for="title">Model</label>
+    <select name="modelId" id="state" class="form-control">
+        <option value="">Choose Model </option>
+    </select>
+</div>
 
-        @csrf
-        <div class="">
-            <label class=" block text-xl font-black mb-1" for="">
-            Vin Number </label>
-            <input type="text" name="vin" id="vin" placeholder="Enter A Vin Number"
-                class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
-                        <div class="           text-center">
-        </div>
 
-    </div>
-    </div>
-    <div class=" mt-10 flex justify-end">
-        <button type="submit"
-            class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">Search</button>
-    </div>
-</form>
+<div class="form-group">
+    <label for="title">Type</label>
+    <select name="typeId" id="city" class="form-control" name="" id="">
+        <option value="">Choose Type </option>
+    </select>
+</div> --}}
+
+
 {{-- value="KMHCT41DXEU538925" --}}
 {{-- <form method="post" action="{{ route('AssemblyGroups') }}">
     @csrf

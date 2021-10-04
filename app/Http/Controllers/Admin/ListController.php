@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Products;
+use App\Models\customList;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Auth;
-class ProductsController extends Controller
+class ListController extends Controller
 {
     public function index()
     {
         abort_if(Gate::denies('products_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-         $products = Products::all()->where('user_id',Auth::user()->id);
+         $customList = customList::all();
 
-        return view('admin.products.index',compact('products'));
+        return view('admin.list.index',compact('customList'));
     }
 
     public function create()
@@ -55,32 +55,28 @@ class ProductsController extends Controller
             $data[]=$value;
           }
         }
-        return view('admin.products.create',compact('data'));
+        return view('admin.list.create',compact('data'));
     }
     public function store(Request $request)
     {
-        // return response()->json($request, 200);
-        $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-  
+        $result_explode = explode('|', $request->manuId);
+
         $input = $request->all();
-        $result_explode = explode('|', $request->modelId);
-        $input['manu_id']=$result_explode[0];
-        $input['modelId']=$result_explode[1];
+        $input['manuName']=$result_explode[1];
+        $input['manuId']=$result_explode[0];
+        //  return response()->json($input);
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-        }
+        // if ($image = $request->file('image')) {
+        //     $destinationPath = 'image/';
+        //     $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        //     $image->move($destinationPath, $profileImage);
+        //     $input['image'] = "$profileImage";
+        // }
     
-        Products::create($input);
-        $products = Products::all();
+        customList::create($input);
+        $customList = customList::all();
 
-        return view('admin.products.index',compact('products'));
+        return view('admin.list.index',compact('customList'));
 
     }
 

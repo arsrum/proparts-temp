@@ -52,15 +52,30 @@
                             <a href="{{ route('orders') }}">
                                 <li>My Orders</li>
                             </a>
-                            <a href="{{ route('logout') }}">
+                            @if (Auth::user()->vendor == 1)
+                            <a href="{{ route('admin.products.index') }}">
+                                <li>My Products</li>
+                            </a>
+                            @endif
+                           
+                            <a href="{{ route('signout') }}">
                                 <li> Logout</li>
                             </a>
 
                         @else
                             <a href="{{ route('user-login.show') }}">
                                 <li>Login
-                                    \
+
+                                </li>
+                            </a>
+                            <a href="{{ route('register-user') }}">
+                                <li>
                                     Register
+                                </li>
+                            </a>
+                            <a href="{{ route('register-seller') }}">
+                                <li>
+                                    Register Seller
                                 </li>
                             </a>
                         @endif

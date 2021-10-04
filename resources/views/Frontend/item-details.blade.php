@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Car Info</div>
-                                <div class="text-center">
+                                <div class=" text-center">
                                     {{ $carDetails->manuName . ' - ' . $carDetails->modelName . ' ' . substr($carDetails->yearOfConstrFrom, 0, 4) }}
                                     @if (isset($carDetails->yearOfConstrTo))
                                         - {{ substr($carDetails->yearOfConstrTo, 0, 4) }}
@@ -107,15 +107,31 @@
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Car Type</div>
-                                <div class="text-center">{{ $carDetails->manuName }}</div>
+                                <div class=" text-center">
+                                    {{ $carDetails->manuName }}</div>
                             </div>
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">Part Type</div>
-                                <div class="text-center">أصلي</div>
+                                <?php $count = 0; ?>
+
+                                @foreach ($item->oemNumbers as $name)
+                                    <?php if ($count == 5) {
+                                        break;
+                                    } ?>
+
+
+                                    <div class="">OEM Number</div>
+                                <div class="
+                                        text-center">
+                                        {{ $name->articleNumber }} - {{ $name->mfrName }}</div>
+                                    <?php $count++; ?>
+                                @endforeach
+
                             </div>
+
                             <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                                <div class="">المحرك</div>
-                                <div class="text-center">{{ $carDetails->typeName }}</div>
+                                <div class="">Engine</div>
+                                <div class=" text-center">
+                                    {{ $carDetails->typeName }}</div>
                             </div>
 
 
@@ -124,11 +140,10 @@
                                     To Cart
                                 </div>
                             </button>
-
-                            <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                                <div class="">Price <span class="text-xs">VAT Included </span></div>
+                            {{-- <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
+                                <div class="">Price <span class=" text-xs">VAT Included </span></div>
                                 <div class="text-center">To Be Determined </div>
-                            </div>
+                            </div> --}}
                         </div>
 
         @endforeach

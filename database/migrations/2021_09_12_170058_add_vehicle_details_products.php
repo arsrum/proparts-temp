@@ -15,9 +15,13 @@ class AddVehicleDetailsProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->string('manu_id')->nullable();
-            $table->string('modelId')->nullable();
-            $table->string('typeId')->nullable();
+            $table->string('model_id')->nullable();
+            $table->string('type_id')->nullable();
             
+            $table->string('manu_name')->nullable();
+            $table->string('model_name')->nullable();
+            $table->string('type_name')->nullable();
+
             $table->string('oe_number')->nullable();
             $table->string('oem_number')->nullable();
 

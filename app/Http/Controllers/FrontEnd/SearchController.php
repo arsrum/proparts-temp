@@ -5,7 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Products;
-
+use App\Models\customList;
 class SearchController 
 {
     public function Manufactures(){
@@ -40,10 +40,12 @@ class SearchController
         $data[]=$value;
       }
     }
+    $customList = customList::all();
+
     $Products=Products::all();
     // return response()->json($Products);
 
-    return view('Frontend.index',compact('data','Products'));
+    return view('Frontend.index',compact('data','Products','customList'));
       }
 
       public function model(Request $request)
@@ -129,6 +131,9 @@ class SearchController
 
 
        public function getVehicleByVin(Request $request){
+
+
+        //  return response()->json($request);
          if($request->vin===null){
           $curl = curl_init();
           curl_setopt_array($curl, array(
@@ -160,7 +165,10 @@ class SearchController
           $articles = curl_exec($curl);
           
           $nodes = json_decode($articles);
-          
+          if($nodes->status==400)
+          {
+            return back();
+          }
           curl_close($curl);
           if($nodes->data==""){
            $parts=false;
@@ -210,8 +218,9 @@ class SearchController
             }
           }
           //end of vehicle details 
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
 
-          return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails'));
+          return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails','localParts'));
     
           }
           foreach($nodes->data as $value){
@@ -258,18 +267,19 @@ class SearchController
           $decodedResponse = json_decode($response);
           
           curl_close($carDetailsCurl);
-
           foreach($decodedResponse->data as $carValue){
             foreach ($carValue as $carData) {
-                $tecDocCarId=$carData->vehicleDocId;
+
                 $vehicleDetails[]=$carData->vehicleDetails;
-                // return response()->json($vehicleDetails);
+                if($carData->vehicleDocId)
+                $tecDocCarId=$carData->vehicleDocId;
 
             }
           }
           //end of vehicle details 
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
 
-          return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails'));
+          return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails','localParts'));
     
          }
          else
@@ -412,7 +422,10 @@ class SearchController
 
             }
           }
-          return view('Frontend.main-parts',compact('parts','carId','word','tecDocCarId','vehicleDetails'));
+            // return response()->json($vehicleDetails[0]->manuId, 200);
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+
+          return view('Frontend.main-parts',compact('parts','carId','word','tecDocCarId','vehicleDetails','localParts'));
 
       }
 
@@ -457,7 +470,9 @@ class SearchController
         }
       }
       $carId=$request->typeId;
-      return view('Frontend.main-parts',compact('parts','carId'));
+      $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+      
+      return view('Frontend.main-parts',compact('parts','carId','localParts'));
 
       }
 
@@ -530,6 +545,7 @@ class SearchController
               "linkageTargetId": '.$carId.',
               "linkageTargetType": "P",
               "linkageTargetCountry": "SA",
+              "includeOEMNumbers": true,
               "perPage": 1,
               "includeGenericArticles": true,
               "includeImages": true
@@ -586,7 +602,7 @@ class SearchController
           $data[]=$value;
           
         }
-        //  return response()->json($carDetails, 200);
+        //  return response()->json($data, 200);
         return view('Frontend.item-details',compact('data','assemblyGroupNodeId','id','carId','carDetails'));
 
       }

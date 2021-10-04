@@ -42,27 +42,33 @@
             </div>
             <div class="bg-white grid grid-cols-2 py-2 px-4">
                 <div class=""><a
-                        class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
-                        Model :
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->typeName }}
-                        @endforeach
+                        class=" bg-gradient-to-l from-ornage-start to-ornage-end
+                    text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
+                    sm:rounded-xl">
+                    Model :
+                    @foreach ($vehicleDetails as $vehicleDetail)
+                        {{ $vehicleDetail->typeName }}
+                    @endforeach
 
-                    </a></div>
+                    </a>
+                </div>
                 <div class=""><a
-                        class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
-                        Vehicle :
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->manuName }} {{ $vehicleDetail->modelName }}
-                            {{ substr($vehicleDetail->yearOfConstrFrom, 0, 4) }}
-                            @if (isset($vehicleDetail->yearOfConstrTo))
-                                - {{ substr($vehicleDetail->yearOfConstrTo, 0, 4) }}
-                            @else
-                                - {{ date('Y') }}
-                            @endif
+                        class=" bg-gradient-to-l from-ornage-start to-ornage-end
+                    text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
+                    sm:rounded-xl">
+                    Vehicle :
+                    @foreach ($vehicleDetails as $vehicleDetail)
+                        {{ $vehicleDetail->manuName }} {{ $vehicleDetail->modelName }}
+                        {{ substr($vehicleDetail->yearOfConstrFrom, 0, 4) }}
+                        @if (isset($vehicleDetail->yearOfConstrTo))
+                            - {{ substr($vehicleDetail->yearOfConstrTo, 0, 4) }}
+                        @else
+                            - {{ date('Y') }}
+                        @endif
 
-                        @endforeach
-                    </a></div>
+                    @endforeach
+                    </a>
+                </div>
                 <div class="text-center">
 
                 </div>
@@ -87,7 +93,7 @@
                         <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
 
                             <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
-                                <img src="                             @if (file_exists('imgs/' . $item->assemblyGroupNodeId . '.png'))
+                                <img src="                                   @if (file_exists('imgs/' . $item->assemblyGroupNodeId . '.png'))
                                 imgs/{{ $item->assemblyGroupNodeId }}.png
                             @else
                                 imgs/default.png @endif" class="mb-5" alt="">
@@ -96,6 +102,16 @@
                                 </h2>
                             </a>
                         </div>
+                    @endforeach
+
+
+                    @foreach ($localParts as $product)
+                        <a href="{{ route('products.show', $product->id) }}">
+                            <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
+                                <img src="/image/{{ $product->image }}" class="mb-5" alt="">
+                                <h2 class="text-lg sm:text-2xl text-center">{{ $product->name }}</h2>
+                            </div>
+                        </a>
                     @endforeach
             @endif
 
