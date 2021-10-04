@@ -13,7 +13,7 @@ class CustomAuthController extends Controller
 
     public function index()
     {
-        return view('frontend.login');
+        return view('Frontend.login');
     }  
       
 
@@ -45,13 +45,13 @@ else
 
     public function registration()
     {
-        return view('frontend.register');
+        return view('Frontend.register');
     }
       
 
     public function registrationSelller()
     {
-        return view('frontend.registerSeller');
+        return view('Frontend.RegisterSeller');
     }
       
     public function customRegistration(Request $request)
