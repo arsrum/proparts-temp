@@ -35,7 +35,7 @@
 
                         </div>
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
-                            <x-jet-label for="name" value="Cr" />
+                            <x-jet-label for="name" value="Commercial Registration" />
                             <x-jet-input id="cr" class="block mt-1 w-full" type="text" name="cr" :value="old('cr')"
                                 required autofocus />
 

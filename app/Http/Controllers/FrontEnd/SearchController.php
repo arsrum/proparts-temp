@@ -219,7 +219,10 @@ class SearchController
           }
           //end of vehicle details 
           $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-
+          if($localParts->count()==0)
+          {
+            $localParts=Products::get()->where('manu_id',null);
+          }
           return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails','localParts'));
     
           }
@@ -278,7 +281,11 @@ class SearchController
           }
           //end of vehicle details 
           $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+          if($localParts->count()==0)
+          {
+            $localParts=Products::get()->where('manu_id',null);
+          }
           return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails','localParts'));
     
          }
@@ -424,7 +431,11 @@ class SearchController
           }
             // return response()->json($vehicleDetails[0]->manuId, 200);
           $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+          if($localParts->count()==0)
+          {
+            $localParts=Products::get()->where('manu_id',null);
+          }
           return view('Frontend.main-parts',compact('parts','carId','word','tecDocCarId','vehicleDetails','localParts'));
 
       }
@@ -471,7 +482,11 @@ class SearchController
       }
       $carId=$request->typeId;
       $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-      
+      $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+          if($localParts->count()==0)
+          {
+            $localParts=Products::get()->where('manu_id',null);
+          }
       return view('Frontend.main-parts',compact('parts','carId','localParts'));
 
       }

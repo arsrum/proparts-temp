@@ -93,7 +93,7 @@ else
         ]);
            
         $data = $request->all();
-        $check = $this->create($data);
+        $check = $this->createSeller($data);
          
         return redirect("dashboard")->withSuccess('You have signed-in');
     }
@@ -105,7 +105,10 @@ else
         'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-        'vendor'=>$data['vendor']
+        'vendor'=>$data['vendor'],
+        'cr'=>$data['cr'],
+        'store_name'=>$data['store_name'],
+        'address'=>$data['address'],
 
       ]);
     }    

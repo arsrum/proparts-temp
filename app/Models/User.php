@@ -55,12 +55,10 @@ class User extends Authenticatable
         self::created(function (User $user) {
             $registrationRole = config('panel.registration_default_role');
             if (!$user->roles()->get()->contains($registrationRole)) {
-                if(                $user->vendor==1                )
+                if($user->vendor==1)
                 {
                     $user->roles()->attach(2);
-
                 }
-                
             }
         });
     }

@@ -38,7 +38,7 @@ class OrdersController extends Controller
     {
         abort_if(Gate::denies('seller_orders'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orders = Order::with(['user', 'address', 'status'])->where('brand_no',Auth::user()->id)->get();
+        $orders = Order::with(['user', 'address', 'status'])->where('user_id',Auth::user()->id)->get();
 
         $users = User::get();
 
