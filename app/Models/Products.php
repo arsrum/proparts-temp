@@ -17,7 +17,7 @@ class Products extends Model
         'user_id',
         'manu_id',
         'model_id',
-        'typeId',
+        'type_id',
         'oe_number',
         'oem_number'
     ];

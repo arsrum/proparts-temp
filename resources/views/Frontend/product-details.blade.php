@@ -90,9 +90,9 @@
                         <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                             <div class="">Product Details </div>
                             <div class=" text-center">
-                                {{ $Products->modelId }}
+                                {{ $Products->model_id }}
                                 {{ $Products->manu_id }}
-                                {{ $Products->typeId }}
+                                {{ $Products->type_id }}
 
                             </div>
 
