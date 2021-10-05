@@ -66,10 +66,13 @@ class ProductsController extends Controller
         ]);
   
         $input = $request->all();
+        if($request->modelId!=null){
+
+        
         $result_explode = explode('|', $request->modelId);
         $input['manu_id']=$result_explode[0];
         $input['modelId']=$result_explode[1];
-
+      }
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
