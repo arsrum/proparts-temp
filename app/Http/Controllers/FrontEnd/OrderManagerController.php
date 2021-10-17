@@ -17,7 +17,10 @@ use App\Models\User;
 use App\Models\ContactUs;
 use App\Models\Status;
 use Gate;
+use Redirect;
 use Auth;
+use Essam\TapPayment\Payment;
+
 use Symfony\Component\HttpFoundation\Response;
 class OrderManagerController
 {
@@ -74,7 +77,48 @@ class OrderManagerController
         $order_products = order_products::create($input);
 
     }
-    return redirect()->route('done');
+    $TapPay = new Payment(['secret_api_Key'=> 'sk_test_8s1YyuD94WJkTwMqNUKPBb0E']);
+
+
+
+
+
+
+
+
+
+
+
+
+    $redirect = false; // return response as json , you can use it form mobile web view application
+    $data=[$TapPay->charge([
+      'amount' => 1,
+      'currency' => 'SAR',
+      'threeDSecure' => 'true',
+      'description' => 'test description',
+      'statement_descriptor' => 'sample',
+      'customer' => [
+         'first_name' => 'customer',
+         'email' => 'customer@gmail.com',
+      ],
+      'source' => [
+        'id' => 'src_card'
+      ],
+      'post' => [
+         'url' => '/done'
+      ],
+      'redirect' => [
+         'url' => url('/done')
+      ]
+  ],$redirect)];
+
+  foreach ($data as $key => $data) {
+    $asd=$data;
+  }
+  
+    // return response()->json();
+
+    return Redirect::to($asd->transaction->url);
 
     }
     else
