@@ -106,11 +106,11 @@
                             Login
 
                         </a></div>
-                    {{-- <div class=""><a href="{{ route('user-register.show') }}"
+                    <div class=""><a href="{{ route('register-user') }}"
                             class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
-                            تسجيل حساب جديد
+                            Register
 
-                        </a></div> --}}
+                        </a></div>
                     <div class="text-center">
 
                     </div>

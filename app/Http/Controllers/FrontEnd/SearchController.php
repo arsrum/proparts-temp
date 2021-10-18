@@ -118,9 +118,67 @@ class SearchController
     $response = curl_exec($curl);
     curl_close($curl);
     $object = json_decode($response);
-    foreach($object->data as $articleDetails){
+    $index = 0;
+
+    foreach($object->data as $key =>$articleDetails){
+
       foreach ($articleDetails as $value) {
-        $models[]=$value;
+        
+
+        $carDetailsCurl = curl_init();
+          curl_setopt_array($carDetailsCurl, array(
+            CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+          
+              "getVehicleByIds4": {
+                "articleCountry": "SA",
+                "carIds": {
+                  "array": [
+                    '.$value->carId.'
+                  ]
+                },
+                "countriesCarSelection": "SA",
+                "country": "SA",
+                "lang": "en",
+                "provider": 22735
+            
+            }',
+            CURLOPT_HTTPHEADER => array(
+              'Content-Type: application/json'
+            ),
+          ));
+          $response = curl_exec($carDetailsCurl);
+          
+          $decodedResponse = json_decode($response);
+          
+          curl_close($carDetailsCurl);
+
+          foreach($decodedResponse->data as $carValue){
+            foreach ($carValue as $carData) {
+                
+                $vehicleDetails[]=$carData->vehicleDetails;
+                
+            }
+          }
+          $yearTo = "2021";
+// True because $a is set
+if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
+  $yearTo=substr($vehicleDetails[$index]->yearOfConstrTo, 0, 4) ;
+}
+        $myObj = (object) array(
+          "carName" => $value->carName.' | '.substr($vehicleDetails[$index]->yearOfConstrFrom, 0, 4) .' - '.$yearTo,
+          "carId" => $value->carId
+      );
+      $index++;
+
+        $models[]=$myObj;
       }
     }
     
@@ -134,6 +192,7 @@ class SearchController
 
 
         //  return response()->json($request);
+        //get vehicle by search
          if($request->vin===null){
           $curl = curl_init();
           curl_setopt_array($curl, array(
@@ -320,12 +379,17 @@ class SearchController
       $articles = curl_exec($curl);
       
       $nodes = json_decode($articles);
+     
       // return response()->json($nodes);
 
       curl_close($curl);
       
       foreach($nodes->data as $value){
               $daaf[]=$value;
+              if($value =="")
+              {
+                return back();
+              }
       }
       foreach ($daaf[2] as  $saad) {
       foreach ($saad as  $help) {

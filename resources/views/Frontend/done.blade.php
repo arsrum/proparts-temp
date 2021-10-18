@@ -28,12 +28,21 @@
             </div>
             <div class="mt-10 flex justify-end">
 
-                <form action="{{ route('Cart-Clear') }}" method="POST" class="mt-20">
+                <form action="{{ route('home') }}" method="get" class="mt-20">
+                    @csrf
+                    <div class="mt-10 flex justify-end">
+                        <button type="submit" style="
+                        margin-left: 10px;
+                    " class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
+                            back home </button>
+                    </div>
+                </form>
+                <form action="{{ route('invoice') }}" method="get" class="mt-20">
                     @csrf
                     <div class="mt-10 flex justify-end">
                         <button type="submit"
                             class="text-xl text-white font-bold bg-ornage-start px-16 py-2 rounded-2xl">
-                            BackHome </button>
+                            invoice </button>
                     </div>
                 </form>
                 {{-- <a href="{{ route('home') }}" type="submit"

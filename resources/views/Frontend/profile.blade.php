@@ -37,7 +37,7 @@
 
                     <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                         <div class="">My Orders</div>
-                        <div class="text-center">5</div>
+                        <div class="text-center">{{ $orders->count() }}</div>
                     </div>
 
 

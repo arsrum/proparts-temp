@@ -49,15 +49,15 @@
                             <a href="{{ route('profile') }}">
                                 <li>My Account</li>
                             </a>
-                            <a href="{{ route('orders') }}">
+                            <a href="{{ route('myorders') }}">
                                 <li>My Orders</li>
                             </a>
                             @if (Auth::user()->vendor == 1)
-                            <a href="{{ route('admin.products.index') }}">
-                                <li>My Products</li>
-                            </a>
+                                <a href="{{ route('admin.products.index') }}">
+                                    <li>My Products</li>
+                                </a>
                             @endif
-                           
+
                             <a href="{{ route('signout') }}">
                                 <li> Logout</li>
                             </a>

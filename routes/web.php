@@ -57,6 +57,8 @@ Route::get('/products/show/{id}', 'Admin\ProductsController@show')->name('produc
    return view('Frontend.inventory');
  })->name('inventory');
 
+ Route::get('myOrders', 'FrontEnd\UserFrontendController@orders')->name('myorders');
+ Route::get('myOrders/{id}', 'FrontEnd\UserFrontendController@ordersshow')->name('myorders.show');
 
  Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
  Route::get('login', [CustomAuthController::class, 'index'])->name('user-login.show');
@@ -92,12 +94,18 @@ Route::get('/products/show/{id}', 'Admin\ProductsController@show')->name('produc
 //  })->name('shipping-details');
 
 Route::post('/payment', 'FrontEnd\OrderManagerController@store')->name('payment');
+Route::get('/invoice', 'FrontEnd\OrderManagerController@done')->name('invoice');
 
 // Route::get('/payment', function () {
 //   return view('Frontend.payment');
 // })->name('payment');
 
 Route::get('/done', function () {
+  $cart= Cart::content();
+  foreach ($cart as $value) {
+    Cart::remove($value->rowId);
+
+  }
   return view('Frontend.done');
 })->name('done');
 
@@ -134,6 +142,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
   Route::resource('cars', 'CarsController');
 
   // Orders
+
   Route::delete('orders/destroy', 'OrdersController@massDestroy')->name('orders.massDestroy');
   Route::resource('orders', 'OrdersController');
   Route::get('seller_orders', 'OrdersController@seller')->name('orders.seller');

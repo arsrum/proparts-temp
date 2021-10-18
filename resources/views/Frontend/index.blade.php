@@ -37,23 +37,6 @@
                  </ol>
              </div>
          </div> --}}
-         <div class="mt-5">
-             <ul class="flex text text-white font-bold">
-                 <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center">1</li>
-                 <li class="flex items-center justify-center">
-                     <div class="w-10 sm:w-32 bg-pp-blue h-px"></div>
-                 </li>
-                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">2</li>
-                 <li class="flex items-center justify-center">
-                     <div class="w-10 sm:w-32 bg-pp-blue h-px"></div>
-                 </li>
-                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">3</li>
-                 <li class="flex items-center justify-center">
-                     <div class="w-10 sm:w-32 bg-pp-blue h-px"></div>
-                 </li>
-                 <li class="bg-pp-blue h-10 w-10 pt-1  rounded-full flex justify-center items-center">4</li>
-             </ul>
-         </div>
 
          <div class="w-full">
 

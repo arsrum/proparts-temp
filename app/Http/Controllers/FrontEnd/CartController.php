@@ -33,8 +33,20 @@ class CartController
 
   }
   public function buy(Request $request)
-  {
-    // return response()->json($request);
+  {      
+    //  return response()->json($request);
+
+    
+    $cart = Cart::content();
+    foreach ($cart as $key => $value) {
+      if($value->options->articleNumber==$request->articleNumber)
+      {
+        $cart = Cart::content();
+
+        return view('Frontend.confirm-order', compact('cart'));
+      }
+
+    }
      Cart::add(array(
        array(
          'id' => rand(1, 100),
