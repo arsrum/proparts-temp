@@ -267,12 +267,18 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
           $decodedResponse = json_decode($response);
           
           curl_close($carDetailsCurl);
-
+          $tecDocCarId="empty";
           foreach($decodedResponse->data as $carValue){
             foreach ($carValue as $carData) {
+              if(isset($carData->vehicleDocId))
+              {
                 $tecDocCarId=$carData->vehicleDocId;
                 $vehicleDetails[]=$carData->vehicleDetails;
-                // return response()->json($vehicleDetails);
+                      // return response()->json($vehicleDetails[0]->manuId, 200);
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+              }
+              
 
             }
           }
@@ -327,26 +333,32 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
           $response = curl_exec($carDetailsCurl);
           
           $decodedResponse = json_decode($response);
-          
+          $tecDocCarId="empty";
           curl_close($carDetailsCurl);
           foreach($decodedResponse->data as $carValue){
             foreach ($carValue as $carData) {
 
+               
+                if(isset($carData->vehicleDocId))
+                {
+                  $tecDocCarId=$carData->vehicleDocId;
+                  $vehicleDetails[]=$carData->vehicleDetails;
+                        // return response()->json($vehicleDetails[0]->manuId, 200);
+            $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+                }
+                else
                 $vehicleDetails[]=$carData->vehicleDetails;
-                if($carData->vehicleDocId)
-                $tecDocCarId=$carData->vehicleDocId;
 
+                // $tecDocCarId=$carData->vehicleDocId;
             }
           }
           //end of vehicle details 
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
           $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
           if($localParts->count()==0)
           {
             $localParts=Products::get()->where('manu_id',null);
           }
           return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails','localParts'));
-    
          }
          else
          //start of get vehicle by vin number 
@@ -380,17 +392,18 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
       
       $nodes = json_decode($articles);
      
-      // return response()->json($nodes);
 
       curl_close($curl);
       
       foreach($nodes->data as $value){
+
               $daaf[]=$value;
               if($value =="")
               {
-                return back();
+                return back()->with('fail','vehicle is not supported by vin search please enter it manually ');
               }
       }
+      //edit
       foreach ($daaf[2] as  $saad) {
       foreach ($saad as  $help) {
         $weeb[]=$help;
@@ -485,17 +498,21 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
           // return response()->json($decodedResponse);
 
           curl_close($carDetailsCurl);
-
+          $tecDocCarId="empty";
           foreach($decodedResponse->data as $carValue){
             foreach ($carValue as $carData) {
+              if(isset($carData->vehicleDocId))
+              {
                 $tecDocCarId=$carData->vehicleDocId;
                 $vehicleDetails[]=$carData->vehicleDetails;
-
+                      // return response()->json($vehicleDetails[0]->manuId, 200);
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+              }
+              
             }
           }
-            // return response()->json($vehicleDetails[0]->manuId, 200);
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+      
           if($localParts->count()==0)
           {
             $localParts=Products::get()->where('manu_id',null);
