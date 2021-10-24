@@ -46,7 +46,7 @@
                          role="alert">
                          <span
                              class="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Done</span>
-                         <a href="{{ route('shipping-details') }}">
+                         <a href="">
                              <span class="font-semibold mr-2 text-left flex-auto">{{ Session::get('fail') }}</span>
                          </a>
 
