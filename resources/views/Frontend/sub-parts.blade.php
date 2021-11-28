@@ -22,7 +22,7 @@
         <div class="w-full">
             {{-- <form action="{{ route('item-details') }}" class="mt-20"> --}}
 
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
+            <div class="mt-10 grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
                 @foreach ($data as $item)
                     @foreach ($item->genericArticles as $items)
                         <a

@@ -1,5 +1,5 @@
 <x-theme-layout>
-    <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
+    <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-5 sm:p-10 rounded-3xl flex flex-col items-center justify-center"
         dir="rtl">
         <div class="mt-5">
             <ul class="flex text text-white font-bold">
@@ -22,10 +22,10 @@
         @if ($tecDocCarId == 'empty')
 
         @else
-            <div class="carousel">
+            <div class="mt-5 carousel">
                 <div class="carousel-inner">
-                    <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true"
-                        hidden="" checked="checked">
+                    {{-- <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true"
+                        hidden="" checked="checked"> --}}
                     <div class="carousel-item">
                         <img src="{{ route('image', $tecDocCarId) }}">
 
@@ -42,11 +42,10 @@
         @endif
 
 
-        <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
-            <div class=" pt-3 px-4 font-bold text-ornage-start text-xl">
-
+        <div class="mt-5 grid grid-cols-1 grid-rows-3 gap-5 w-full">
+            <div class="hidden sm:block pt-3 px-4 font-bold text-ornage-start text-xl">
             </div>
-            <div class="bg-white grid grid-cols-2 py-2 px-4">
+            <div class="bg-white grid grid-cols-1 sm:grid-cols-2 py-2 px-4">
                 <div class=""><a
                         class=" bg-gradient-to-l from-ornage-start to-ornage-end
                     text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
@@ -58,7 +57,7 @@
 
                     </a>
                 </div>
-                <div class=""><a
+                <div class="mt-1 sm:mt-0"><a
                         class=" bg-gradient-to-l from-ornage-start to-ornage-end
                     text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
                     sm:rounded-xl">
@@ -75,12 +74,9 @@
                         @endforeach
                     </a>
                 </div>
-                <div class="text-center">
-
-                </div>
 
             </div>
-            <div class="bg-white grid grid-cols-2 py-2 px-4">
+            <div class="bg-white grid grid-cols-1 sm:grid-cols-2 py-2 px-4">
                 <div class=""><a
                         class=" bg-gradient-to-l from-ornage-start to-ornage-end
                     text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
@@ -92,7 +88,7 @@
 
                     </a>
                 </div>
-                <div class=""><a
+                <div class="mt-1 sm:mt-0"><a
                         class=" bg-gradient-to-l from-ornage-start to-ornage-end
                     text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
                     sm:rounded-xl">
@@ -117,7 +113,7 @@
             </div>
 
         </div>
-        <div class="w-full">
+        <div class="w-full mt-0 sm:mt-10">
             {{-- <form action="{{ route('sub-parts') }}" class="mt-20"> --}}
             @if (!$parts)
                 <div class="max-w-3xl mx-auto my-16">
@@ -136,7 +132,7 @@
                         <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
 
                             <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
-                                <img src="                                               
+                                <img src="
                                         @if (file_exists('imgs/' .
                                     $item->assemblyGroupNodeId . '.png'))
                                 imgs/{{ $item->assemblyGroupNodeId }}.png

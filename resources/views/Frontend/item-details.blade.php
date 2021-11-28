@@ -136,7 +136,7 @@
 
 
                             <button type="submit">
-                                <div class="bg-ornage-start flex items-center justify-center text-white font-bold">Add
+                                <div class="p-5 bg-ornage-start flex items-center justify-center text-white font-bold">Add
                                     To Cart
                                 </div>
                             </button>
