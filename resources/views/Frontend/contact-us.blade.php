@@ -1,9 +1,14 @@
 <x-theme-layout>
     <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
-        dir="rtl">
+        dir="ltr">
         <div class="mt-5">
             <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
                 Contact Us
+            </div>
+            <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
+                You can contact us if you require our personal assistance, with your ordering
+                <br>
+                We will be happy to help you
             </div>
         </div>
         @if (Session::has('success'))

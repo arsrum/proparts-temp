@@ -31,9 +31,18 @@ class CarsController extends Controller
 
     public function store(StoreCarRequest $request)
     {
-        $car = Car::create($request->all());
+        if($request->modelId!=null){
 
-        return redirect()->route('admin.cars.index');
+        
+            $result_explode = explode('|', $request->modelId);
+            $input['brand']=$result_explode[0];
+            $input['model']=$result_explode[1];
+            $input['products_id']=$request->product_id;
+  
+            $car = Car::create($input);
+          }
+
+        return redirect()->back();
     }
 
     public function edit(Car $car)

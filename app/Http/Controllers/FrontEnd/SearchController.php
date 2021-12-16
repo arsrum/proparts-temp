@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Products;
 use App\Models\customList;
+
+use App\Models\Car;
+
 class SearchController 
 {
     public function Manufactures(){
@@ -276,15 +279,15 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
                 $vehicleDetails[]=$carData->vehicleDetails;
                       // return response()->json($vehicleDetails[0]->manuId, 200);
           $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
               }
               
 
             }
           }
           //end of vehicle details 
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-          if($localParts->count()==0)
+          $localPartsIds = Car::where('brand',$vehicleDetails[0]->manuId)->where('model',$vehicleDetails[0]->modId)->get(['products_id']);
+          $localParts = Products::whereIn('id', $localPartsIds)->get();
+              if($localParts->count()==0)
           {
             $localParts=Products::get()->where('manu_id',null);
           }
@@ -348,13 +351,14 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
                 }
                 else
                 $vehicleDetails[]=$carData->vehicleDetails;
-
+// return response()->json($vehicleDetails);
                 // $tecDocCarId=$carData->vehicleDocId;
             }
           }
           //end of vehicle details 
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-          if($localParts->count()==0)
+          $localPartsIds = Car::where('brand',$vehicleDetails[0]->manuId)->where('model',$vehicleDetails[0]->modId)->get(['products_id']);
+          $localParts = Products::whereIn('id', $localPartsIds)->get();
+              if($localParts->count()==0)
           {
             $localParts=Products::get()->where('manu_id',null);
           }
@@ -506,9 +510,9 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
                 $tecDocCarId=$carData->vehicleDocId;
                 $vehicleDetails[]=$carData->vehicleDetails;
                       // return response()->json($vehicleDetails[0]->manuId, 200);
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-          $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-              }
+                      $localPartsIds = Car::where('brand',$vehicleDetails[0]->manuId)->where('model',$vehicleDetails[0]->modId)->get(['products_id']);
+                      $localParts = Products::whereIn('id', $localPartsIds)->get();
+                                                  }
               
             }
           }
@@ -562,8 +566,10 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
         }
       }
       $carId=$request->typeId;
-      $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
-      $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+      // $localParts=Products::get()->where('manu_id',$vehicleDetails[0]->manuId);
+      $localPartsIds = Car::where('brand',$vehicleDetails[0]->manuId)->where('model',$vehicleDetails[0]->modId)->get(['products_id']);
+      $localParts = Products::whereIn('id', $localPartsIds)->get();
+
           if($localParts->count()==0)
           {
             $localParts=Products::get()->where('manu_id',null);

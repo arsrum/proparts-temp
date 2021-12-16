@@ -118,14 +118,14 @@ class OrderManagerController
   
   $message = $response->current();
   
-    $to_name = "sqobti@gmail.com";
-    $to_email = "sqobti@gmail.com";
-    $data = array('name'=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
-    Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
-    $message->to($to_email, $to_name)
-    ->subject('Laravel Test Mail');
-    $message->from('propartssa@gmail.com','Test Mail');
-    });
+    // $to_name = "sqobti@gmail.com";
+    // $to_email = "sqobti@gmail.com";
+    // $data = array('name'=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
+    // Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+    // $message->to($to_email, $to_name)
+    // ->subject('Laravel Test Mail');
+    // $message->from('propartssa@gmail.com','Test Mail');
+    // });
     return Redirect::to($asd->transaction->url);
 
     }
@@ -187,14 +187,14 @@ class OrderManagerController
   public function done()
   {
   
-    $to_name = "sqobti@gmail.com";
-    $to_email = "sqobti@gmail.com";
-    $data = array('name'=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
-    Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
-    $message->to($to_email, $to_name)
-    ->subject('Laravel Test Mail');
-    $message->from('propartssa@gmail.com','Test Mail');
-    });
+    // $to_name = "sqobti@gmail.com";
+    // $to_email = "sqobti@gmail.com";
+    // $data = array('name'=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
+    // Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+    // $message->to($to_email, $to_name)
+    // ->subject('Laravel Test Mail');
+    // $message->from('propartssa@gmail.com','Test Mail');
+    // });
     
     $client = new Party([
       'name'          => 'Pro Parts',

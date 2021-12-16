@@ -19,8 +19,7 @@ class Products extends Model
         'model_id',
         'type_id',
         'oe_number',
-        'oem_number'
-    ];
+        'oem_number'    ];
 
     // $table->string('manu_id')->nullable();
     // $table->string('modelId')->nullable();
@@ -28,4 +27,10 @@ class Products extends Model
     
     // $table->string('oe_number')->nullable();
     // $table->string('oem_number')->nullable();
+
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
+
 }

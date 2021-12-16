@@ -25,6 +25,7 @@ class Car extends Model
         'model',
         'year',
         'vin_number',
+        'products_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -33,5 +34,9 @@ class Car extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+    public function products()
+    {
+        return $this->belongsTo(Products::class, 'prodcuts_id', 'id');
     }
 }

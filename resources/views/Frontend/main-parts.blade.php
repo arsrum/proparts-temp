@@ -125,7 +125,7 @@
                 </div>
 
             @else
-                <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 px-4 sm:px-10">
 
 
                     @foreach ($parts as $item)
@@ -133,7 +133,7 @@
 
                             <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
                                 <img src="
-                                        @if (file_exists('imgs/' .
+                                            @if (file_exists('imgs/' .
                                     $item->assemblyGroupNodeId . '.png'))
                                 imgs/{{ $item->assemblyGroupNodeId }}.png
                             @else

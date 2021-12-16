@@ -22,17 +22,24 @@
         <div class="w-full">
             {{-- <form action="{{ route('item-details') }}" class="mt-20"> --}}
 
-            <div class="mt-10 grid grid-cols-2 sm:grid-cols-5 gap-4 px-4 sm:px-10">
+            <div class="mt-10 grid grid-cols-1 sm:grid-cols-5 gap-4 px-4 sm:px-10">
                 @foreach ($data as $item)
                     @foreach ($item->genericArticles as $items)
                         <a
                             href="{{ route('SingleArticles', [$assemblyGroupNodeId, $items->genericArticleId, $carId]) }}">
 
                     @endforeach
+
                     <div class="shadow-xl bg-white rounded-3xl overflow-hidden flex flex-col items-center p-5">
+                        @if (count($item->images)<1)
+                        <img src="../../imgs/default.png " style="height:40px" class="mb-5" alt=""> 
+                        @else
                         @foreach ($item->images as $img)
-                            <img src="{{ $img->imageURL800 }}" style="height:40px" class="mb-5" alt="">
-                        @endforeach
+                        <img src="{{ $img->imageURL800 }}" style="height:40px" class="mb-5" alt="">
+                        <?php break; ?>
+                    @endforeach
+                        @endif
+                       
                         @foreach ($item->genericArticles as $name)
                             <h2 class="text-lg sm:text-2xl text-center">{{ $name->genericArticleDescription }}
                             </h2>

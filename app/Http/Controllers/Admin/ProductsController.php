@@ -9,11 +9,12 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Auth;
+use App\Models\Car;
 class ProductsController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('products_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+      abort_if(Gate::denies('products_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
          $products = Products::all()->where('user_id',Auth::user()->id);
 
@@ -66,21 +67,25 @@ class ProductsController extends Controller
         ]);
   
         $input = $request->all();
-        if($request->modelId!=null){
+       
 
-        
-        $result_explode = explode('|', $request->modelId);
-        $input['manu_id']=$result_explode[0];
-        $input['modelId']=$result_explode[1];
-      }
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
-    
-        Products::create($input);
+        $products =  Products::create($input);
+        if($request->modelId!=null){
+
+        
+          $result_explode = explode('|', $request->modelId);
+          $input['brand']=$result_explode[0];
+          $input['model']=$result_explode[1];
+          $input['products_id']=$products->id;
+
+          $car = Car::create($input);
+        }
         $products = Products::all();
 
         return view('admin.products.index',compact('products'));
@@ -93,8 +98,42 @@ class ProductsController extends Controller
     {
         // abort_if(Gate::denies('contact_us_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $Products = Products::findOrFail($id);
+        $cars=Car::where('products_id',$id)->get();
 
-        return view('admin.products.edit',compact('Products'));
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "getManufacturers2": {
+                "country": "sa",
+                "lang": "en",
+                "linkingTargetType": "p",
+                "provider": 22735
+              }
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $object = json_decode($response);
+        foreach($object->data as $articleDetails){
+        
+          foreach ($articleDetails as $value) {
+            $data[]=$value;
+          }
+        }
+        
+        return view('admin.products.edit',compact('Products','cars','data'));
     }
 
     public function update(Request $request, $id)

@@ -1,5 +1,5 @@
 <x-theme-layout>
-    <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
+    <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-10 sm:mt-80 mx-10 p-10 rounded-3xl flex flex-col items-center justify-center"
         dir="rtl">
         <div class="mt-5">
             <ul class="flex text text-white font-bold">
@@ -136,9 +136,8 @@
 
 
                             <button type="submit">
-                                <div class="p-5 bg-ornage-start flex items-center justify-center text-white font-bold">Add
-                                    To Cart
-                                </div>
+                                <div class="p-5 bg-ornage-start flex items-center justify-center text-white font-bold">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>                                </div>
                             </button>
                             {{-- <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
                                 <div class="">Price <span class=" text-xs">VAT Included </span></div>
