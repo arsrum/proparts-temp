@@ -74,8 +74,8 @@
                         @endforeach
 
 
-                        <div class="mt-5 grid grid-cols-3 grid-rows-5 gap-5 w-full">
-                            <div class="row-span-4 bg-white">
+                        <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 sm:grid-rows-5 gap-5 w-full">
+                            <div class="sm:row-span-4 bg-white">
 
 
                                 @foreach ($item->images as $img)
@@ -94,7 +94,7 @@
 
                                 @endforeach
                             </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <div class="sm:col-start-2 sm:col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Car Info</div>
                                 <div class=" text-center">
                                     {{ $carDetails->manuName . ' - ' . $carDetails->modelName . ' ' . substr($carDetails->yearOfConstrFrom, 0, 4) }}
@@ -105,12 +105,12 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <div class="sm:col-start-2 sm:col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Car Type</div>
                                 <div class=" text-center">
                                     {{ $carDetails->manuName }}</div>
                             </div>
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <div class="sm:col-start-2 sm:col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <?php $count = 0; ?>
 
                                 @foreach ($item->oemNumbers as $name)
@@ -128,7 +128,7 @@
 
                             </div>
 
-                            <div class="col-start-2 col-span-2 bg-white grid grid-cols-2 py-2 px-4">
+                            <div class="sm:col-start-2 sm:col-span-2 bg-white grid grid-cols-2 py-2 px-4">
                                 <div class="">Engine</div>
                                 <div class=" text-center">
                                     {{ $carDetails->typeName }}</div>
