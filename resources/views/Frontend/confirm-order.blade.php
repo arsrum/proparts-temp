@@ -49,7 +49,7 @@
                         <div class="bg-white pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
                             {{ $item->name }}
                         </div>
-                        <div class="mt-5 grid grid-cols-3 grid-rows-5 gap-5 w-full">
+                        <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 grid-rows-5 gap-5 w-full">
                             <div class="row-span-4 bg-white">
                                 @foreach ($item->options as $img)
 
@@ -85,10 +85,9 @@
                                 </div> --}}
                             </button>
 
-                            <div class="col-span-2 bg-ornage-start grid grid-cols-2 py-2 px-4 text-white">
-                                <div class="">Price <span class="text-xs">VAT Included</span></div>
-                                <div class="text-center">
-
+                            <div class="sm:col-span-3 sm:row-start-5 grid grid-cols-2 text-white border border-ornage-start">
+                                <div class="py-2 px-3 bg-ornage-start">Price <span class="text-xs">VAT Included</span></div>
+                                <div class="py-2 px-3 text-center text-ornage-start align-middle">
                                     To Be Determined
                                 </div>
                             </div>
