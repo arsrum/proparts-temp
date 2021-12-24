@@ -96,18 +96,18 @@
                 </div>
             </form>
         @else
-            <div class="mt-5 grid grid-cols-1 grid-rows-5 gap-5 w-full">
-                <div class=" pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
+            <div class="mt-5 grid grid-cols-1 gap-5 w-full">
+                <div class="text-center pt-3 pb-2 px-4 font-bold text-ornage-start text-xl">
                     You Need To Be Logged In To Complete The Purchase
                 </div>
-                <div class="bg-white grid grid-cols-2 py-2 px-4">
-                    <div class=""><a href="{{ route('user-login.show') }}"
-                            class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="w-full"><a href="{{ route('user-login.show') }}"
+                            class="block bg-gradient-to-l from-ornage-start to-ornage-end text-white text-center font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
                             Login
 
                         </a></div>
-                    <div class=""><a href="{{ route('register-user') }}"
-                            class="bg-gradient-to-l from-ornage-start to-ornage-end text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
+                    <div class="w-full"><a href="{{ route('register-user') }}"
+                            class="block bg-gradient-to-l from-ornage-start to-ornage-end text-white text-center font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3  px-4 sm:px-8 rounded-md sm:rounded-xl">
                             Register
 
                         </a></div>
