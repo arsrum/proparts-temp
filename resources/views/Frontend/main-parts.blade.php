@@ -119,11 +119,11 @@
 
                             <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
                                 <img src="
-                                               @if (file_exists('imgs/' .
+                                                 @if (file_exists('imgs/' .
                                     $item->assemblyGroupNodeId . '.png'))
-                                imgs/{{ $item->assemblyGroupNodeId }}.png
+                                ../imgs/{{ $item->assemblyGroupNodeId }}.png
                             @else
-                                imgs/default.png @endif" class="mb-5" alt="">
+                                ../imgs/default.png @endif" class="mb-5" alt="">
                                 <h2 class="text-lg sm:text-2xl text-center">
                                     {{ $item->assemblyGroupName }}
                                 </h2>
