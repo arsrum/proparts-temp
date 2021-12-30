@@ -1,6 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- CSS Files -->
-<form method="POST" action="{{ route('getVehicleByVin') }}" class="mt-20">
+<form method="POST" action="{{ route('main') }}" class="mt-20">
     @csrf
     <div class="flex flex-col sm:flex-row justify-center sm:space-x-8 sm:space-x-reverse">
         <div class="">
@@ -26,21 +26,21 @@
             <select name="modelId" id="state"
                 class="border-transparent bg-gray-100 rounded-full  w-full sm:150px mb-5 sm:mb-0""><option value="">Choose Model </option></select>   
                     </div>
-                    <div class="                  ">
+                    <div class="                   ">
                 <label class=" block text-xl font-black mb-1" for="">Type</label>
                 <select name="typeId" id="city"
                     class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-5 sm:mb-0"" name="" id="">
                             <option value="">Choose Type  </option>
                         </select>
                     </div>
-                    <div class="                   sm:mt-8 text-3xl font-bold text-ornage-start">Or
+                    <div class="                    sm:mt-8 text-3xl font-bold text-ornage-start">Or
         </div>
         <div class="">
             <label class=" block text-xl font-black mb-1" for="">OE Number </label>
-            <input type="text" name="vin" id="vin" placeholder="Enter a OE Number  "
+            <input type="text" name="oe" id="oe" placeholder="Enter a OE Number  "
                 class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
                             </div>
-                    <div class="                   sm:mt-8 text-3xl font-bold text-ornage-start">Or
+                    <div class="                    sm:mt-8 text-3xl font-bold text-ornage-start">Or
         </div>
 
         @csrf
@@ -49,7 +49,7 @@
                 Vin Number </label>
             <input type="text" name="vin" id="vin" placeholder="Enter A Vin Number"
                 class="border-transparent bg-gray-100 rounded-full  w-full sm:w-auto mb-8 sm:mb-0"">
-                        <div class="                   text-center">
+                        <div class="                    text-center">
         </div>
 
     </div>
