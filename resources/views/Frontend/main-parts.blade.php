@@ -1,6 +1,6 @@
 <x-theme-layout>
     <div class="bg-gray-50 max-w-7xl sm:mx-auto mb-20 mt-40 sm:mt-80 mx-10 p-5 sm:p-10 rounded-3xl flex flex-col items-center justify-center"
-        dir="rtl">
+        dir="ltr">
         <div class="mt-5">
             <ul class="flex text text-white font-bold">
                 <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center">1</li>
@@ -42,26 +42,13 @@
         @endif
 
 
-        <div class="mt-5 grid grid-cols-1 grid-rows-3 gap-5 w-full">
-            <div class="hidden sm:block pt-3 px-4 font-bold text-ornage-start text-xl">
-            </div>
-            <div class="bg-white grid grid-cols-1 sm:grid-cols-2 py-2 px-4">
-                <div class=""><a
-                        class=" bg-gradient-to-l from-ornage-start to-ornage-end
-                    text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
-                    sm:rounded-xl">
-                        Model :
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->typeName }}
-                        @endforeach
-
-                    </a>
-                </div>
-                <div class="mt-1 sm:mt-0"><a
-                        class=" bg-gradient-to-l from-ornage-start to-ornage-end
-                    text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
-                    sm:rounded-xl">
-                        Vehicle :
+        <div class="mt-20 grid grid-cols-1 grid-rows-2 gap-5 w-full sm:px-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2">
+                <div class="flex flex-col sm:flex-row sm:items-center">
+                    <div
+                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                        Vehicle</div>
+                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
                         @foreach ($vehicleDetails as $vehicleDetail)
                             {{ $vehicleDetail->manuName }} {{ $vehicleDetail->modelName }}
                             {{ substr($vehicleDetail->yearOfConstrFrom, 0, 4) }}
@@ -70,50 +57,49 @@
                             @else
                                 - {{ date('Y') }}
                             @endif
-
                         @endforeach
-                    </a>
+                    </div>
+                </div>
+                <div class="mt-5 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
+                    <div
+                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                        Model</div>
+                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
+                        @foreach ($vehicleDetails as $vehicleDetail)
+                            {{ $vehicleDetail->typeName }}
+                        @endforeach
+                    </div>
                 </div>
 
             </div>
-            <div class="bg-white grid grid-cols-1 sm:grid-cols-2 py-2 px-4">
-                <div class=""><a
-                        class=" bg-gradient-to-l from-ornage-start to-ornage-end
-                    text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
-                    sm:rounded-xl">
-                        Specification :
+            <div class="grid grid-cols-1 sm:grid-cols-2">
+                <div class="flex flex-col sm:flex-row sm:items-center">
+                    <div
+                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                        Specification</div>
+                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
                         @foreach ($vehicleDetails as $vehicleDetail)
                             {{ $vehicleDetail->constructionType }} - {{ $vehicleDetail->impulsionType }}
                         @endforeach
-
-                    </a>
+                    </div>
                 </div>
-                <div class="mt-1 sm:mt-0"><a
-                        class=" bg-gradient-to-l from-ornage-start to-ornage-end
-                    text-white font-bold text-sm sm:text-lg z-20 pb-1 sm:pb-2 pt-2 sm:pt-3 px-4 sm:px-8 rounded-md
-                    sm:rounded-xl">
-                        Engine :
+                <div class="mt-1 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
+                    <div
+                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                        Engine</div>
+                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
                         @foreach ($vehicleDetails as $vehicleDetail)
                             {{ $vehicleDetail->cylinder }} cylinder -
                             {{ substr($vehicleDetail->cylinderCapacityLiter, 0, 1) . ',' . substr($vehicleDetail->cylinderCapacityLiter, 1, 1) }}
                             Liters
                             -
                             {{ $vehicleDetail->powerHpTo }} HP
-
-
-
-
                         @endforeach
-                    </a>
+                    </div>
                 </div>
-                <div class="text-center">
-
-                </div>
-
             </div>
-
         </div>
-        <div class="w-full mt-0 sm:mt-10">
+        <div class="w-full mt-10">
             {{-- <form action="{{ route('sub-parts') }}" class="mt-20"> --}}
             @if (!$parts)
                 <div class="max-w-3xl mx-auto my-16">
@@ -133,7 +119,7 @@
 
                             <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
                                 <img src="
-                                            @if (file_exists('imgs/' .
+                                               @if (file_exists('imgs/' .
                                     $item->assemblyGroupNodeId . '.png'))
                                 imgs/{{ $item->assemblyGroupNodeId }}.png
                             @else
