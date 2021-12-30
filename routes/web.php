@@ -49,11 +49,11 @@ Route::get('getState','FrontEnd\SearchController@model')->name('getState');
 Route::get('getType','FrontEnd\SearchController@type')->name('type');
 
 Route::get('/main-parts/{typeId}', 'FrontEnd\SearchController@getVehicleByVin')->name('getVehicleByVin');
-Route::get('/main-parts/{vin}', 'FrontEnd\SearchController@getVehicleByVinNo')->name('getVehicleByVinNo');
+Route::get('/vin-parts/{vin}', 'FrontEnd\SearchController@getVehicleByVinNo')->name('getVehicleByVinNo');
 
 Route::get('/sub-parts/{assemblyGroupNodeId}/{carId}', 'FrontEnd\SearchController@Articles')->name('Articles');
 Route::get('/item-details/{node}/{id}/{car}', 'FrontEnd\SearchController@SingleArticles')->name('SingleArticles');
-Route::get('/oe-details/{oe}', 'FrontEnd\SearchController@getVehicleByVin')->name('getOe');
+Route::get('/oe-details/{oe}', 'FrontEnd\SearchController@getOe')->name('getOe');
 
 Route::post('/cart-add', 'FrontEnd\CartController@Add')->name('Cart-Add');
 Route::post('/cart-buy', 'FrontEnd\CartController@Buy')->name('Cart-Buy');
