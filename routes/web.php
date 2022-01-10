@@ -45,6 +45,9 @@ Route::post('main', function (Request $request) {
 Route::get('/image/{id}', 'FrontEnd\SearchController@images')->name('image');
 
 Route::get('/home', 'FrontEnd\SearchController@Manufactures')->name('home');
+Route::get('/LCV', 'FrontEnd\SearchController@Commercial')->name('LCV');
+Route::get('/MotorCycles', 'FrontEnd\SearchController@MotorCycles')->name('MotorCycles');
+
 Route::get('getState','FrontEnd\SearchController@model')->name('getState');
 Route::get('getType','FrontEnd\SearchController@type')->name('type');
 

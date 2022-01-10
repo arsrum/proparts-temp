@@ -11,6 +11,85 @@ use App\Models\Car;
 
 class SearchController 
 {
+   public function MotorCycles(){
+        $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "getManufacturers2": {
+            "country": "sa",
+            "lang": "en",
+            "linkingTargetType": "B",
+            "provider": 22735
+          }
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json'
+      ),
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $object = json_decode($response);
+    foreach($object->data as $articleDetails){
+    
+      foreach ($articleDetails as $value) {
+        $data[]=$value;
+      }
+    }
+    $customList =null;
+
+    $Products=Products::all();
+    // return response()->json($Products);
+
+    return view('Frontend.index',compact('data','Products','customList'));
+      }
+      public function Commercial(){
+        $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=2BeBXg6FhwzMLAc1D65AAMKnYE2E43EzPg9bu8ZY4P2Y5MWfNRMn',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+        "getManufacturers2": {
+            "country": "sa",
+            "lang": "en",
+            "linkingTargetType": "O",
+            "provider": 22735
+          }
+    }',
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json'
+      ),
+    ));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $object = json_decode($response);
+    foreach($object->data as $articleDetails){
+    
+      foreach ($articleDetails as $value) {
+        $data[]=$value;
+      }
+    }
+    $customList = null;
+
+    $Products=Products::all();
+    // return response()->json($Products);
+
+    return view('Frontend.index',compact('data','Products','customList'));
+      }
+
     public function Manufactures(){
         $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -309,7 +388,7 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
         $articles = curl_exec($OeArticleCarCurl);
         
         $OeArticleCarResponse = json_decode($articles);
-
+        
         foreach ($OeArticleCarResponse->data as $key => $value) {
          $OeArticleCarJson=$value[0];
          

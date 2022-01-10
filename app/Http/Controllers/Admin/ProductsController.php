@@ -156,6 +156,12 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         abort_if(Gate::denies('products_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $cars=Car::where('products_id',$id)->get();
+        foreach ($cars as $key => $car) {
+          $input['products_id']=null;
+          $car->update($input);
+        }
+        $cars=Car::where('products_id',$id)->get();
         $Products = Products::findOrFail($id);
 
         $Products->delete();
