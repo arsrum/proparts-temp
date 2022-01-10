@@ -40,65 +40,70 @@
                 </div>
             </div>
         @endif
+        @if ($vehicleDetails == 'empty')
 
+        @else
+            <div class="mt-20 grid grid-cols-1 grid-rows-2 gap-5 w-full sm:px-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center">
+                        <div
+                            class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                            Vehicle</div>
+                        <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
 
-        <div class="mt-20 grid grid-cols-1 grid-rows-2 gap-5 w-full sm:px-10">
-            <div class="grid grid-cols-1 sm:grid-cols-2">
-                <div class="flex flex-col sm:flex-row sm:items-center">
-                    <div
-                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
-                        Vehicle</div>
-                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->manuName }} {{ $vehicleDetail->modelName }}
-                            {{ substr($vehicleDetail->yearOfConstrFrom, 0, 4) }}
-                            @if (isset($vehicleDetail->yearOfConstrTo))
-                                - {{ substr($vehicleDetail->yearOfConstrTo, 0, 4) }}
-                            @else
-                                - {{ date('Y') }}
-                            @endif
-                        @endforeach
+                            @foreach ($vehicleDetails as $vehicleDetail)
+                                {{ $vehicleDetail->manuName }} {{ $vehicleDetail->modelName }}
+                                {{ substr($vehicleDetail->yearOfConstrFrom, 0, 4) }}
+                                @if (isset($vehicleDetail->yearOfConstrTo))
+                                    - {{ substr($vehicleDetail->yearOfConstrTo, 0, 4) }}
+                                @else
+                                    - {{ date('Y') }}
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
+                        <div
+                            class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                            Model</div>
+                        <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
+                            @foreach ($vehicleDetails as $vehicleDetail)
+                                {{ $vehicleDetail->typeName }}
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center">
+                        <div
+                            class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                            Specification</div>
+                        <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
+                            @foreach ($vehicleDetails as $vehicleDetail)
+                                {{ $vehicleDetail->constructionType }} - {{ $vehicleDetail->impulsionType }}
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="mt-1 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
+                        <div
+                            class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
+                            Engine</div>
+                        <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
+                            @foreach ($vehicleDetails as $vehicleDetail)
+                                {{ $vehicleDetail->cylinder }} cylinder -
+                                {{ substr($vehicleDetail->cylinderCapacityLiter, 0, 1) . ',' . substr($vehicleDetail->cylinderCapacityLiter, 1, 1) }}
+                                Liters
+                                -
+                                {{ $vehicleDetail->powerHpTo }} HP
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-                <div class="mt-5 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
-                    <div
-                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
-                        Model</div>
-                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->typeName }}
-                        @endforeach
-                    </div>
-                </div>
-
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2">
-                <div class="flex flex-col sm:flex-row sm:items-center">
-                    <div
-                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
-                        Specification</div>
-                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->constructionType }} - {{ $vehicleDetail->impulsionType }}
-                        @endforeach
-                    </div>
-                </div>
-                <div class="mt-1 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
-                    <div
-                        class="pt-2 pb-1 px-5 text-white font-bold rounded-xl bg-gradient-to-l from-ornage-start to-ornage-end">
-                        Engine</div>
-                    <div class="pt-2 pb-1 px-5 mt-3 sm:mt-0 sm:ml-2 bg-white rounded-xl">
-                        @foreach ($vehicleDetails as $vehicleDetail)
-                            {{ $vehicleDetail->cylinder }} cylinder -
-                            {{ substr($vehicleDetail->cylinderCapacityLiter, 0, 1) . ',' . substr($vehicleDetail->cylinderCapacityLiter, 1, 1) }}
-                            Liters
-                            -
-                            {{ $vehicleDetail->powerHpTo }} HP
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endif
+
+
         <div class="w-full mt-10">
             {{-- <form action="{{ route('sub-parts') }}" class="mt-20"> --}}
             @if (!$parts)
@@ -119,8 +124,7 @@
 
                             <a href="{{ route('Articles', [$item->assemblyGroupNodeId, $carId]) }}">
                                 <img src="
-                                                 @if (file_exists('imgs/' .
-                                    $item->assemblyGroupNodeId . '.png'))
+                                                  @if (file_exists('imgs/' . $item->assemblyGroupNodeId . '.png'))
                                 ../imgs/{{ $item->assemblyGroupNodeId }}.png
                             @else
                                 ../imgs/default.png @endif" class="mb-5" alt="">

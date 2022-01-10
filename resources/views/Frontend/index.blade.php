@@ -4,18 +4,17 @@
          <div class="mt-5">
              <ul class="flex text text-white font-bold">
                  <a href="{{ route('home') }}">
-                     <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center"><img
-                             src="../imgs/car.png" alt="" srcset=""style="    max-width: 100%;
+                     <li class="{{ Route::is('home') ? 'bg-ornage-start' : 'bg-pp-blue' }} h-10 w-10 pt-1  rounded-full flex justify-center items-center"><img
+                             src="../imgs/car.png" alt="" srcset="" style="    max-width: 100%;
                              height: 85%;">
                      </li>
                  </a>
-
 
                  <li class="flex items-center justify-center">
                      <div class="w-10 sm:w-32 bg-pp-blue h-px"></div>
                  </li>
                  <a href="{{ route('MotorCycles') }}">
-                     <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center"><img
+                     <li class="{{ Route::is('MotorCycles') ? 'bg-ornage-start' : 'bg-pp-blue' }}   h-10 w-10 pt-1  rounded-full flex justify-center items-center"><img
                              src="../imgs/motorbike.png" alt="" srcset="" style="    max-width: 100%;
                              height: 85%;">
                      </li>
@@ -24,8 +23,9 @@
                      <div class="w-10 sm:w-32 bg-pp-blue h-px"></div>
                  </li>
                  <a href="{{ route('LCV') }}">
-                     <li class="bg-ornage-start h-10 w-10 pt-1  rounded-full flex justify-center items-center"><img
-                             src="../imgs/lcv.png" alt="" srcset=""style="    max-width: 100%;
+                     <li
+                         class="{{ Route::is('LCV') ? 'bg-ornage-start' : 'bg-pp-blue' }}  h-10 w-10 pt-1  rounded-full flex justify-center items-center">
+                         <img src="../imgs/lcv.png" alt="" srcset="" style="    max-width: 100%;
                              height: 85%;">
                      </li>
                  </a>

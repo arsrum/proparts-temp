@@ -691,6 +691,7 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
           
           curl_close($carDetailsCurl);
           $tecDocCarId="empty";
+          $vehicleDetails="empty";
           foreach($decodedResponse->data as $carValue){
             foreach ($carValue as $carData) {
               if(isset($carData->vehicleDocId))
@@ -705,12 +706,16 @@ if (isset($vehicleDetails[$index]->yearOfConstrTo)) {
             }
           }
           //end of vehicle details 
-          $localPartsIds = Car::where('brand',$vehicleDetails[0]->manuId)->where('model',$vehicleDetails[0]->modId)->get(['products_id']);
-          $localParts = Products::whereIn('id', $localPartsIds)->get();
-              if($localParts->count()==0)
+          if($vehicleDetails=="empty")
           {
             $localParts=Products::get()->where('manu_id',null);
           }
+          else
+          {
+            $localPartsIds = Car::where('brand',$vehicleDetails[0]->manuId)->where('model',$vehicleDetails[0]->modId)->get(['products_id']);
+            $localParts = Products::whereIn('id', $localPartsIds)->get();
+          }
+      
           return view('Frontend.main-parts',compact('parts','carId','tecDocCarId','vehicleDetails','localParts'));
     
           }
